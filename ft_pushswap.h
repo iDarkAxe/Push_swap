@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:08:30 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/15 16:09:16 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/15 18:10:57 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ typedef struct s_data
 t_stack	*ft_stacknew(int content);
 void	ft_stackadd_front(t_stack **lst, t_stack *new);
 t_stack	*ft_stacklast(t_stack *stack);
+void	ft_stackadd_back(t_stack **stack, t_stack *new);
+
+// Filling stack related functions
+int		fill_stack(int argc, char **argv, t_data *data);
 
 // INSTRUCTIONS
 void	ft_sa(t_data *data);
@@ -55,10 +59,9 @@ void	ft_rrb(t_data *data);
 void	ft_rrr(t_data *data);
 
 // OPTIONAL
-int		remplissage_stack(int argc, char **argv, t_data *data);
 void	print_stack(t_stack **stack);
 // Adds OF OPTIONAL
 void	print_stacks(t_data *data);
-int		remplissage_stacks(int argc, char **argv, t_data *data);
+int		fill_stacks(int argc, char **argv, t_data *data);
 
 #endif

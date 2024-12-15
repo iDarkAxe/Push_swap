@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:39:03 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/15 16:13:03 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/15 17:37:10 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 /*@TODO REMOVE*/
 #include <stdio.h>
 
+/**
+ * @brief Main function
+ * /!\ require arguments to work
+ * 
+ * @param argc number of argument
+ * @param argv array of string
+ * @return int 0 OK, -1 is error
+ */
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -23,15 +31,10 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (-1);
 	data = malloc(sizeof(t_data));
-	if (data == NULL)
+	if (data == NULL || fill_stack(argc, argv, data) == -1)
 		return (-1);
-	if (remplissage_stacks(argc, argv, data) == -1)
-		return (-1);
-	if (DEBUG == 1)
-		print_stacks(data);
+	print_stacks(data);
 	printf("\nFIN DU REMPLISSAGE\n\n");
-	ft_sb(data);
-	if (DEBUG == 1)
-		print_stacks(data);
+	print_stacks(data);
 	return (0);
 }

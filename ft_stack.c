@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 12:58:40 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/15 15:04:18 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/15 17:29:52 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <stdlib.h>
 
 /**
- * @brief Alloue (avec malloc(3)) et renvoie un nouvel élément. 
- * La variable ’content’ est initialisée à l’aide de la valeur 
- * du paramètre ’content’. La variable ’next’ est initialisée à NULL.
+ * @brief Allocates and returns the newly created element
+ * 'value' is initialised with content
+ * 'next' is set to NULL
  * 
  * @param content value to add when creating the element
  * @return tstack* pointer to the element
@@ -34,7 +34,7 @@ t_stack	*ft_stacknew(int content)
 }
 
 /**
- * @brief Ajoute l’élément ’new’ au début de la stack.
+ * @brief Adds the 'new' element at the start of stack
  * 
  * @param stack head of stack
  * @param new element to add
@@ -54,4 +54,23 @@ t_stack	*ft_stacklast(t_stack *stack)
 	while (stack->next != NULL)
 		stack = stack->next;
 	return (stack);
+}
+
+/**
+ * @brief Adds the 'new' element at the end of stack
+ * 
+ * @param stack head of stack
+ * @param new element to add
+ */
+void	ft_stackadd_back(t_stack **stack, t_stack *new)
+{
+	t_stack	*last;
+
+	if (stack == NULL || new == NULL)
+		return ;
+	last = ft_stacklast(*stack);
+	if (last == NULL)
+		*stack = new;
+	else
+		last->next = new;
 }

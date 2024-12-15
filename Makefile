@@ -40,7 +40,11 @@ INSTRUCTIONS = \
 	ft_rrotate_ps.c
 
 STACK = \
-	ft_stack.c
+	ft_stack.c \
+	ft_filler_ps.c
+
+FACULTATIF = \
+	test_only.c
 
 #############################################################################################
 #                                                                                           #
@@ -50,7 +54,8 @@ STACK = \
 SRCS =	\
 	$(addprefix $(P_SRC), $(SRC)) \
 	$(addprefix $(P_SRC), $(INSTRUCTIONS)) \
-	$(addprefix $(P_SRC), $(STACK))
+	$(addprefix $(P_SRC), $(STACK)) \
+	$(addprefix $(P_SRC), $(FACULTATIF))
 
 # List of object files (redirect to P_OBJ)
 OBJS = $(subst $(P_SRC), $(P_OBJ), $(SRCS:.c=.o))
@@ -94,6 +99,17 @@ re:
 	@$(MAKE) --no-print-directory fclean
 	@$(MAKE) --no-print-directory all
 
+# Aliases
+clear: clean
+fclear: fclean
+flcean: fclean
+flcear: fclean
+
+#############################################################################################
+#                                                                                           #
+#                                           DEBUG                                           #
+#                                                                                           #
+#############################################################################################
 # Debugging
 debug:
 	$(CC) $(CFLAGS) -D DEBUG=1 -c *.c
@@ -116,12 +132,6 @@ debug-print:
 	@echo "$(Red)SRCS: \n\t$(Blue)$(SRCS)$(Color_Off)"
 	@echo ""
 	@echo "$(Red)OBJS: \n\t$(Blue)$(OBJS)$(Color_Off)"
-
-# Aliases
-clear: clean
-fclear: fclean
-flcean: fclean
-flcear: fclean
 
 #############################################################################################
 #                                                                                           #

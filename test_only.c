@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 11:28:37 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/15 16:11:11 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/15 17:30:54 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	print_stacks(t_data *data)
 	print_stack(&data->b);
 }
 
-int	remplissage_stacks(int argc, char **argv, t_data *data)
+int	fill_stacks(int argc, char **argv, t_data *data)
 {
 	t_stack	*temp_a;
 	t_stack	*temp_b;
