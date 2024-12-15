@@ -6,15 +6,22 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 13:54:16 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/14 14:05:31 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/15 15:08:46 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-void ft_pa(t_data *data)
+/**
+ * @brief Push a :
+ * Takes the first element of b and put it on top of stack a.
+ * Do nothing if b doesn't exit.
+ *
+ * @param data structure that handles the stacks
+ */
+void	ft_pa(t_data *data)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	if (data->b == NULL)
 		return ;
@@ -24,14 +31,21 @@ void ft_pa(t_data *data)
 	ft_stackadd_front(&data->a, temp);
 }
 
-void ft_pb(t_data *data)
+/**
+ * @brief Push b :
+ * Takes the first element of b and put it on top of stack b.
+ * Do nothing if b doesn't exit.
+ *
+ * @param data structure that handles the stacks
+ */
+void	ft_pb(t_data *data)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	if (data->a == NULL)
 		return ;
 	temp = data->a;
 	data->a = data->a->next;
 	temp->next = NULL;
-	ft_stackadd_front(&data->a, temp);
+	ft_stackadd_front(&data->b, temp);
 }

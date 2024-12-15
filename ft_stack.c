@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 12:58:40 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/14 14:43:11 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/15 15:04:18 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
  * La variable ’content’ est initialisée à l’aide de la valeur 
  * du paramètre ’content’. La variable ’next’ est initialisée à NULL.
  * 
- * @param content 
- * @return tstack* 
+ * @param content value to add when creating the element
+ * @return tstack* pointer to the element
  */
 t_stack	*ft_stacknew(int content)
 {
@@ -36,15 +36,14 @@ t_stack	*ft_stacknew(int content)
 /**
  * @brief Ajoute l’élément ’new’ au début de la stack.
  * 
- * @param stack 
- * @param new 
+ * @param stack head of stack
+ * @param new element to add
  */
 void	ft_stackadd_front(t_stack **stack, t_stack *new)
 {
 	if (new == NULL)
 		return ;
-	if (stack != NULL || *stack == NULL)
-		new->next = *stack;
+	new->next = *stack;
 	*stack = new;
 }
 

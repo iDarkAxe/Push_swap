@@ -12,7 +12,7 @@ esac
 case $1 in *"d"*) make debug; did=true;;
 	*) ;;
 esac
-case $1 in *"t"*) ./push_swap 1 5 4 8 7 9 6 2 9 898987 6561877 651684602 -510870 7 9 8 6 2 4; did=true;;
+case $1 in *"t"*) ./push_swap -5 -4 -3 -2 -1 0 1 2 3 4 5; did=true;;
 	*) ;;
 esac
 case $1 in *"h"*) echo "$HELP_MESSAGE"; did=true;;

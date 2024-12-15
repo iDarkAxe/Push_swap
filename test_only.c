@@ -6,12 +6,15 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 11:28:37 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/14 14:56:26 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/15 16:11:11 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 #include <stddef.h>
+// DONT FORGET TO REMOVE
+#include <stdio.h>
+#include <stdlib.h>
 
 void	print_stack(t_stack **stack)
 {
@@ -27,26 +30,36 @@ void	print_stack(t_stack **stack)
 	}
 }
 
-// int		tab[10] = {10, 85, 45, 98, -52, 789, 352, 10, 15, 8294};
-int	remplissage_stack_tab(t_stack **stack)
+void	print_stacks(t_data *data)
 {
-	ssize_t	index;
-	t_stack	*temp;
-	int		tab[10];
+	printf("a :\n");
+	print_stack(&data->a);
+	printf("b :\n");
+	print_stack(&data->b);
+}
 
-	index = 0;
-	while (index < 10)
-		tab[index] = index;
-	index = 10 - 1;
-	while (index >= 0)
+int	remplissage_stacks(int argc, char **argv, t_data *data)
+{
+	t_stack	*temp_a;
+	t_stack	*temp_b;
+	int		value;
+
+	data->a_len = 0;
+	data->b_len = 0;
+	while (argc > 1)
 	{
-		temp = ft_stacknew(tab[index]);
-		if (temp == NULL)
-			return (free(stack), -1);
-		ft_stackadd_front(stack, temp);
-		if (index == 0)
-			break ;
-		index--;
+		value = atoi(argv[argc - 1]);
+		temp_a = ft_stacknew(value);
+		if (temp_a == NULL)
+			return ((void)free(data), -1);
+		data->a_len++;
+		temp_b = ft_stacknew(value);
+		ft_stackadd_front(&(data->a), temp_a);
+		if (temp_b == NULL)
+			return ((void)free(data), -1);
+		data->b_len++;
+		ft_stackadd_front(&(data->b), temp_b);
+		argc--;
 	}
 	return (0);
 }

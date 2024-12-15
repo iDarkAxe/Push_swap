@@ -2,7 +2,9 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -MMD -MP
 NAME = push_swap
-DEBUG = 0
+
+DEBUG_CC = clang
+DEBUG_CFLAGS = -Weverything -Wno-padded -pedantic -O2 -Wwrite-strings -Wconversion
 
 #############################################################################################
 #                                                                                           #
@@ -69,12 +71,12 @@ all: $(NAME)
 
 # Create static library 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -D DEBUG=$(DEBUG) -o $(NAME) $^
+	$(CC) $(CFLAGS) -o $(NAME) $^
 
 $(P_OBJ)%.o: $(P_SRC)%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -I $(P_INC) -D DEBUG=$(DEBUG) -c $< -o $@
-
+	$(CC) $(CFLAGS) -I $(P_INC) -c $< -o $@
+# 
 #############################################################################################
 #                                                                                           #
 #                                      Other RULES                                          #
@@ -94,7 +96,19 @@ re:
 
 # Debugging
 debug:
-	@$(MAKE) --no-print-directory DEBUG=1 all
+	$(CC) $(CFLAGS) -D DEBUG=1 -c *.c
+	$(CC) $(CFLAGS) -D DEBUG=1 -o $(NAME) *.o
+	@mkdir -p .obj
+	@mv *.o *.d .obj
+
+# debug:
+# 	@$(MAKE) --no-print-directory DEBUG=1 all
+
+debug-cc:
+	$(DEBUG_CC) $(CFLAGS) $(DEBUG_CFLAGS) -D DEBUG=1 -c *.c
+	$(DEBUG_CC) $(CFLAGS) $(DEBUG_CFLAGS) -D DEBUG=1 -o $(NAME) *.o
+	@mkdir -p .obj
+	@mv *.o *.d .obj
 
 debug-print:
 	@echo "$(Red)Project: \n\t$(Blue)$(NAME)$(Color_Off)"

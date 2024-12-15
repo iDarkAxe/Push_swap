@@ -6,15 +6,22 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 14:06:36 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/14 14:38:39 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/15 15:08:52 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-void ft_ra(t_data *data)
+/**
+ * @brief Rotate a :
+ * Shifts all the stack up
+ * and the first becomes last.
+ *
+ * @param data structure that handles the stacks
+ */
+void	ft_ra(t_data *data)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	temp = data->a;
 	data->a = data->a->next;
@@ -22,9 +29,16 @@ void ft_ra(t_data *data)
 	temp->next = NULL;
 }
 
-void ft_rb(t_data *data)
+/**
+ * @brief Rotate b :
+ * Shifts all the stack up
+ * and the first becomes last.
+ *
+ * @param data structure that handles the stacks
+ */
+void	ft_rb(t_data *data)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	temp = data->b;
 	data->b = data->b->next;
@@ -32,7 +46,13 @@ void ft_rb(t_data *data)
 	temp->next = NULL;
 }
 
-void ft_rr(t_data *data)
+/**
+ * @brief Rotate a and b :
+ * Executes Rotate a and Rotate b.
+ *
+ * @param data structure that handles the stacks
+ */
+void	ft_rr(t_data *data)
 {
 	ft_ra(data);
 	ft_rb(data);
