@@ -41,7 +41,8 @@ INSTRUCTIONS = \
 
 STACK = \
 	ft_stack.c \
-	ft_filler_ps.c
+	ft_filler_ps.c \
+	ft_verify.c
 
 FACULTATIF = \
 	test_only.c

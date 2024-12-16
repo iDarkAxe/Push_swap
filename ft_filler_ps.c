@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:28 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/15 18:11:16 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/16 18:07:15 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
  */
 static int	ft_atoi(const char *nptr)
 {
-	long		number;
-	long		overflow_tester;
+	int			number;
 	short int	minus_sign;
 
 	number = 0;
@@ -39,10 +38,9 @@ static int	ft_atoi(const char *nptr)
 	}
 	while (*nptr != '\0' && *nptr >= '0' && *nptr <= '9')
 	{
-		overflow_tester = number;
 		number = number * 10 + *nptr++ - '0';
-		if (overflow_tester > number)
-			return (-(!minus_sign));
+		if (number == 214748364 && *nptr == '8')
+			return (-2147483648);
 	}
 	if (minus_sign == -1)
 		return ((int)-number);
@@ -57,7 +55,8 @@ static int	ft_atoi(const char *nptr)
  */
 static char	verify_char(char letter)
 {
-	if ((letter >= '0' && letter <= '9') || letter == ' ' || letter == '-')
+	if ((letter >= '0' && letter <= '9') || letter == ' '\
+		|| letter == '-' || letter == '+')
 		return (letter);
 	return (0);
 }
@@ -108,6 +107,10 @@ static int	fill_stack_single_string(char *str, t_data *data)
 		while (*str == ' ')
 			str++;
 		value = ft_atoi(str);
+		if (value != ft_atol(str))
+			return ((void)free(data), -1);
+		if (verify_duplicates(value, data->a) == -1)
+			return ((void)free(data), -1);
 		while (((*str >= '0' && *str <= '9') || *str == '-') && *str != ' ')
 			str++;
 		while (*str == ' ')
@@ -144,6 +147,9 @@ int	fill_stack(int argc, char **argv, t_data *data)
 	while (argc > 1)
 	{
 		value = ft_atoi(argv[argc - 1]);
+		if (value != ft_atol(argv[argc - 1]) \
+			|| verify_duplicates(value, data->a) == -1)
+			return ((void)free(data), -1);
 		temp = ft_stacknew(value);
 		if (temp == NULL)
 			return ((void)free(data), -1);
