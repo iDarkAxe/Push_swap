@@ -6,15 +6,15 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 11:28:37 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/15 17:30:54 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/16 18:24:14 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 #include <stddef.h>
+#include <stdlib.h>
 // DONT FORGET TO REMOVE
 #include <stdio.h>
-#include <stdlib.h>
 
 void	print_stack(t_stack **stack)
 {

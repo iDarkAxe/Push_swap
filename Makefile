@@ -1,6 +1,7 @@
 .PHONY : all clean fclean re bonus
 CC = gcc
-CFLAGS = -Wall -Wextra -MMD -MP
+CFLAGS = -Wall -Wextra
+DEPENDANCIES = -MMD -MP
 NAME = push_swap
 
 DEBUG_CC = clang
@@ -12,7 +13,11 @@ DEBUG_CFLAGS = -Weverything -Wno-padded -pedantic -O2 -Wwrite-strings -Wconversi
 #                                                                                           #
 #############################################################################################
 # Source directories
-P_SRC = ./
+P_SRC = src/
+P_INSTRUCTIONS = instructions/
+P_STACK = stack/
+P_SORT = sort/
+P_OPTIONAL = optional/
 
 # Object directories
 P_OBJ = .obj/
@@ -44,7 +49,11 @@ STACK = \
 	ft_filler_ps.c \
 	ft_verify.c
 
-FACULTATIF = \
+SORT = \
+	ft_sort.c \
+	ft_sort_hardcoded.c
+
+OPTIONAL = \
 	test_only.c
 
 #############################################################################################
@@ -54,9 +63,10 @@ FACULTATIF = \
 #############################################################################################
 SRCS =	\
 	$(addprefix $(P_SRC), $(SRC)) \
-	$(addprefix $(P_SRC), $(INSTRUCTIONS)) \
-	$(addprefix $(P_SRC), $(STACK)) \
-	$(addprefix $(P_SRC), $(FACULTATIF))
+	$(addprefix $(P_SRC)$(P_INSTRUCTIONS), $(INSTRUCTIONS)) \
+	$(addprefix $(P_SRC)$(P_STACK), $(STACK)) \
+	$(addprefix $(P_SRC)$(P_SORT), $(SORT)) \
+	$(addprefix $(P_SRC)$(P_OPTIONAL), $(OPTIONAL))
 
 # List of object files (redirect to P_OBJ)
 OBJS = $(subst $(P_SRC), $(P_OBJ), $(SRCS:.c=.o))
@@ -77,11 +87,11 @@ all: $(NAME)
 
 # Create static library 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $^
+	$(CC) $(CFLAGS) $(DEPENDANCIES) -o $(NAME) $^
 
 $(P_OBJ)%.o: $(P_SRC)%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -I $(P_INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEPENDANCIES) -I $(P_INC) -c $< -o $@
 # 
 #############################################################################################
 #                                                                                           #
@@ -113,19 +123,13 @@ flcear: fclean
 #############################################################################################
 # Debugging
 debug:
-	$(CC) $(CFLAGS) -D DEBUG=1 -c *.c
-	$(CC) $(CFLAGS) -D DEBUG=1 -o $(NAME) *.o
-	@mkdir -p .obj
-	@mv *.o *.d .obj
+	$(CC) $(CFLAGS) -g3 -D DEBUG=1 -I ./ $(SRCS) -o $(NAME) 
 
 # debug:
 # 	@$(MAKE) --no-print-directory DEBUG=1 all
 
 debug-cc:
-	$(DEBUG_CC) $(CFLAGS) $(DEBUG_CFLAGS) -D DEBUG=1 -c *.c
-	$(DEBUG_CC) $(CFLAGS) $(DEBUG_CFLAGS) -D DEBUG=1 -o $(NAME) *.o
-	@mkdir -p .obj
-	@mv *.o *.d .obj
+	$(DEBUG_CC) $(CFLAGS) -g3 $(DEBUG_CFLAGS) -D DEBUG=1 -I ./ -o $(NAME) $(SRCS)
 
 debug-print:
 	@echo "$(Red)Project: \n\t$(Blue)$(NAME)$(Color_Off)"

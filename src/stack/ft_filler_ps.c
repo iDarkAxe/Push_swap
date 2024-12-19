@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:28 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/16 18:07:15 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/18 18:51:56 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,5 +157,6 @@ int	fill_stack(int argc, char **argv, t_data *data)
 		ft_stackadd_front(&(data->a), temp);
 		argc--;
 	}
+	data->b = NULL;
 	return (0);
 }
