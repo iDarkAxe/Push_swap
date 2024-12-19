@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 13:49:53 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/15 15:09:06 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/19 16:15:51 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_sa(t_data *data)
 	temp_value = (data->a)->value;
 	(data->a)->value = (data->a)->next->value;
 	(data->a)->next->value = temp_value;
+	write(1, "sa\n", 3);
 }
 
 /**
@@ -46,6 +47,7 @@ void	ft_sb(t_data *data)
 	temp_value = (data->b)->value;
 	(data->b)->value = (data->b)->next->value;
 	(data->b)->next->value = temp_value;
+	write(1, "sb\n", 3);
 }
 
 /**
@@ -56,6 +58,17 @@ void	ft_sb(t_data *data)
  */
 void	ft_ss(t_data *data)
 {
-	ft_sa(data);
-	ft_sb(data);
+	int	temp_value;
+
+	if (data->a == NULL || data->a->next == NULL)
+		return ;
+	temp_value = (data->a)->value;
+	(data->a)->value = (data->a)->next->value;
+	(data->a)->next->value = temp_value;
+	if (data->b == NULL || data->b->next == NULL)
+		return ;
+	temp_value = (data->b)->value;
+	(data->b)->value = (data->b)->next->value;
+	(data->b)->next->value = temp_value;
+	write(1, "ss\n", 3);
 }

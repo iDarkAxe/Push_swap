@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:08:30 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/19 09:18:08 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/19 16:27:05 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 #  define DEBUG 0
 # endif
 
-# include <stddef.h> 
+# include <stddef.h>
+# include <unistd.h>
 
 typedef struct s_stack
 {

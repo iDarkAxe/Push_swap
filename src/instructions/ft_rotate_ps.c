@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 14:06:36 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/15 15:08:52 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/19 16:13:00 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_ra(t_data *data)
 	data->a = data->a->next;
 	ft_stacklast(data->a)->next = temp;
 	temp->next = NULL;
+	write(1, "ra\n", 3);
 }
 
 /**
@@ -44,6 +45,7 @@ void	ft_rb(t_data *data)
 	data->b = data->b->next;
 	ft_stacklast(data->b)->next = temp;
 	temp->next = NULL;
+	write(1, "rb\n", 3);
 }
 
 /**
@@ -54,6 +56,15 @@ void	ft_rb(t_data *data)
  */
 void	ft_rr(t_data *data)
 {
-	ft_ra(data);
-	ft_rb(data);
+	t_stack	*temp;
+
+	temp = data->a;
+	data->a = data->a->next;
+	ft_stacklast(data->a)->next = temp;
+	temp->next = NULL;
+	temp = data->b;
+	data->b = data->b->next;
+	ft_stacklast(data->b)->next = temp;
+	temp->next = NULL;
+	write(1, "rr\n", 3);
 }

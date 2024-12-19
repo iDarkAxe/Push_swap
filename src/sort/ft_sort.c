@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:24:32 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/19 09:45:55 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/19 16:26:14 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	ft_sort(t_data *data)
 			return (-1);
 	return (is_sorted(data));
 }
-
-#include <stdio.h>
 
 /**
  * @brief Verify if there is something in stack b,

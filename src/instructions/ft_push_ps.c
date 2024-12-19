@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 13:54:16 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/18 18:36:46 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/19 16:11:14 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_pa(t_data *data)
 	data->b = data->b->next;
 	temp->next = NULL;
 	ft_stackadd_front(&data->a, temp);
+	write(1, "pa\n", 3);
 }
 
 /**
@@ -48,4 +49,5 @@ void	ft_pb(t_data *data)
 	data->a = data->a->next;
 	temp->next = NULL;
 	ft_stackadd_front(&data->b, temp);
+	write(1, "pb\n", 3);
 }
