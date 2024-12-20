@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:08:30 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/19 16:27:05 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/20 05:57:11 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_rrb(t_data *data);
 void	ft_rrr(t_data *data);
 
 // OPTIONAL
-void	print_stack(t_stack **stack);
+void	print_stack(t_stack *stack);
 // Adds OF OPTIONAL
 void	print_stacks(t_data *data);
 int		fill_stacks(int argc, char **argv, t_data *data);

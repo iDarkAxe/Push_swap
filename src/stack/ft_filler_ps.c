@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:28 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/18 18:51:56 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/20 16:37:00 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /**
  * @brief Convert string to int, and handle number
  * (compliant to real atoi)
- * 
+ *
  * @param nptr pointer to the start of the string
  * @return int value that was calculated
  */
@@ -49,21 +49,21 @@ static int	ft_atoi(const char *nptr)
 
 /**
  * @brief Verify if a single character is unauthorized
- * 
+ *
  * @param letter character tested
  * @return char letter if authorized, 0 if not
  */
 static char	verify_char(char letter)
 {
-	if ((letter >= '0' && letter <= '9') || letter == ' '\
-		|| letter == '-' || letter == '+')
+	if ((letter >= '0' && letter <= '9') || letter == ' ' || letter == '-'
+		|| letter == '+')
 		return (letter);
 	return (0);
 }
 
 /**
  * @brief Verify is there are unauthorized characters in arguments
- * 
+ *
  * @param argc number of args
  * @param argv array of strings
  * @return int 0 if OK, -1 is error
@@ -89,13 +89,13 @@ static int	verify_arguments(int argc, char **argv)
 }
 
 /**
- * @brief Parse the given args, 
+ * @brief Parse the given args,
  * creates nodes and links them to make a stack
  * MOD of fill_stack to handle single string argument
- * 
+ *
  * @param str single string that have multiple args
  * @param data structure that handles the stacks
- * @return int 0 if OK, -1 is error
+ * @return int 0 if OK, !0 is error
  */
 static int	fill_stack_single_string(char *str, t_data *data)
 {
@@ -109,14 +109,12 @@ static int	fill_stack_single_string(char *str, t_data *data)
 		value = ft_atoi(str);
 		if (value != ft_atol(str))
 			return ((void)free(data), -1);
-		if (verify_duplicates(value, data->a) == -1)
-			return ((void)free(data), -1);
 		while (((*str >= '0' && *str <= '9') || *str == '-') && *str != ' ')
 			str++;
 		while (*str == ' ')
 			str++;
 		temp = ft_stacknew(value);
-		if (temp == NULL)
+		if (temp == NULL || verify_duplicates(value, data->a) == -1)
 			return ((void)free(data), -1);
 		data->a_len++;
 		ft_stackadd_back(&(data->a), temp);
@@ -125,14 +123,14 @@ static int	fill_stack_single_string(char *str, t_data *data)
 }
 
 /**
- * @brief Parse the given args, 
+ * @brief Parse the given args,
  * creates nodes and links them to make a stack
  * Uses _single_string if number of args is 2
- * 
+ *
  * @param argc number of args
  * @param argv array of strings
  * @param data structure that handles the stacks
- * @return int 0 if OK, -1 is error
+ * @return int 0 if OK, !0 is error
  */
 int	fill_stack(int argc, char **argv, t_data *data)
 {
@@ -147,12 +145,13 @@ int	fill_stack(int argc, char **argv, t_data *data)
 	while (argc > 1)
 	{
 		value = ft_atoi(argv[argc - 1]);
-		if (value != ft_atol(argv[argc - 1]) \
-			|| verify_duplicates(value, data->a) == -1)
-			return ((void)free(data), -1);
+		if (value != ft_atol(argv[argc - 1]))
+			return ((void)free(data), -2);
+		if (verify_duplicates(value, data->a) == -1)
+			return ((void)free(data), -3);
 		temp = ft_stacknew(value);
 		if (temp == NULL)
-			return ((void)free(data), -1);
+			return ((void)free(data), -4);
 		data->a_len++;
 		ft_stackadd_front(&(data->a), temp);
 		argc--;

@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 14:39:02 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/19 16:24:15 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/20 15:15:37 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,30 @@ void	ft_rra(t_data *data)
 	data->a->next = previous_head;
 	write(1, "rra\n", 4);
 }
+
+// void	ft_rra(t_data *data)
+// {
+// 	t_stack	*temp;
+// 	t_stack	*previous;
+
+// 	// Vérifier si la pile est vide ou contient un seul élément
+// 	if (data->a == NULL || data->a->next == NULL)
+// 		return ;
+// 	temp = data->a;
+// 	previous = NULL;
+// 	// Parcourir jusqu'au dernier élément
+// 	while (temp->next != NULL)
+// 	{
+// 		previous = temp;
+// 		temp = temp->next;
+// 	}
+// 	// Mise à jour des liens pour effectuer la rotation inversée
+// 	previous->next = NULL;
+// 	temp->next = data->a;
+// 	data->a = temp;
+// 	// Afficher l'opération
+// 	write(1, "rra\n", 4);
+// }
 
 /**
  * @brief Reverse Rotate b :

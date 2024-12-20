@@ -35,8 +35,7 @@ INC = \
 	ft_pushswap.h
 
 # Source files
-SRC = \
-	main.c
+# SRC = 
 
 INSTRUCTIONS = \
 	ft_push_ps.c \
@@ -85,14 +84,18 @@ INCS = $(addprefix $(P_INC)/, $(INC))
 #############################################################################################
 all: $(NAME)
 
-# Create static library 
-$(NAME): $(OBJS)
+# Create static library
+$(NAME): $(OBJS) $(P_OBJ)main.o
 	$(CC) $(CFLAGS) $(DEPENDANCIES) -o $(NAME) $^
 
 $(P_OBJ)%.o: $(P_SRC)%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(DEPENDANCIES) -I $(P_INC) -c $< -o $@
-# 
+
+checker: $(OBJS) src/checker/checker.c
+	ar -rcs libpush_swap.a $^
+	$(CC) $(CFLAGS) -I $(P_INC) -o $@ src/checker/checker.c libpush_swap.a
+
 #############################################################################################
 #                                                                                           #
 #                                      Other RULES                                          #
@@ -105,6 +108,8 @@ clean:
 fclean:
 	@$(MAKE) --no-print-directory clean
 	rm -f $(NAME)
+	rm -f libpush_swap.a
+	rm -f checker
 
 re:
 	@$(MAKE) --no-print-directory fclean
@@ -123,13 +128,13 @@ flcear: fclean
 #############################################################################################
 # Debugging
 debug:
-	$(CC) $(CFLAGS) -g3 -D DEBUG=1 -I ./ $(SRCS) -o $(NAME) 
+	$(CC) $(CFLAGS) -g3 -D DEBUG=1 -I ./ $(SRCS) $(P_SRC)main.c -o $(NAME) 
 
 # debug:
 # 	@$(MAKE) --no-print-directory DEBUG=1 all
 
 debug-cc:
-	$(DEBUG_CC) $(CFLAGS) -g3 $(DEBUG_CFLAGS) -D DEBUG=1 -I ./ -o $(NAME) $(SRCS)
+	$(DEBUG_CC) $(CFLAGS) -g3 $(DEBUG_CFLAGS) -D DEBUG=1 -I ./ -o $(NAME) $(SRCS) $(P_SRC)main.c
 
 debug-print:
 	@echo "$(Red)Project: \n\t$(Blue)$(NAME)$(Color_Off)"

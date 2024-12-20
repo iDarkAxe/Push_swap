@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 11:28:37 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/16 18:24:14 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/20 05:56:40 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 // DONT FORGET TO REMOVE
 #include <stdio.h>
 
-void	print_stack(t_stack **stack)
+void	print_stack(t_stack *stack)
 {
 	t_stack	*index;
 	size_t	number;
 
 	number = 0;
-	index = *stack;
+	index = stack;
 	while (index != NULL)
 	{
 		printf("stack[%ld] = %d\n", number++, index->value);
@@ -33,9 +33,9 @@ void	print_stack(t_stack **stack)
 void	print_stacks(t_data *data)
 {
 	printf("a :\n");
-	print_stack(&data->a);
+	print_stack(data->a);
 	printf("b :\n");
-	print_stack(&data->b);
+	print_stack(data->b);
 }
 
 int	fill_stacks(int argc, char **argv, t_data *data)
