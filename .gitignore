@@ -2,3 +2,7 @@ checker_linux
 .obj/
 checker_Mac
 push_swap
+checker
+result
+libgnl.a
+libpush_swap.a
