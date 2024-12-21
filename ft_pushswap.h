@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:08:30 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/20 05:57:11 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/21 15:20:41 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_data
 	t_stack	*b;
 }	t_data;
 
+typedef char	t_bool;
+
 // Stack related functions
 t_stack	*ft_stacknew(int content);
 void	ft_stackadd_front(t_stack **lst, t_stack *new);
@@ -53,20 +55,20 @@ int		ft_sort(t_data *data);
 int		ft_sort_hardcoded(t_data *data);
 
 // INSTRUCTIONS
-void	ft_sa(t_data *data);
-void	ft_sb(t_data *data);
-void	ft_ss(t_data *data);
+void	ft_sa(t_data *data, t_bool print_name);
+void	ft_sb(t_data *data, t_bool print_name);
+void	ft_ss(t_data *data, t_bool print_name);
 
-void	ft_pa(t_data *data);
-void	ft_pb(t_data *data);
+void	ft_pa(t_data *data, t_bool print_name);
+void	ft_pb(t_data *data, t_bool print_name);
 
-void	ft_ra(t_data *data);
-void	ft_rb(t_data *data);
-void	ft_rr(t_data *data);
+void	ft_ra(t_data *data, t_bool print_name);
+void	ft_rb(t_data *data, t_bool print_name);
+void	ft_rr(t_data *data, t_bool print_name);
 
-void	ft_rra(t_data *data);
-void	ft_rrb(t_data *data);
-void	ft_rrr(t_data *data);
+void	ft_rra(t_data *data, t_bool print_name);
+void	ft_rrb(t_data *data, t_bool print_name);
+void	ft_rrr(t_data *data, t_bool print_name);
 
 // OPTIONAL
 void	print_stack(t_stack *stack);

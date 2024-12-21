@@ -6,16 +6,13 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:39:03 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/20 16:41:07 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/21 15:39:29 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 #include <stdlib.h>
 #include <unistd.h>
-
-/*@TODO REMOVE*/
-#include <stdio.h>
 
 int	errors_handler(int error);
 
@@ -34,7 +31,6 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		return (-1);
-	// write(1, "Start\n", 6);
 	data = malloc(sizeof(t_data));
 	if (data == NULL)
 		return (errors_handler(-1));
@@ -43,17 +39,13 @@ int	main(int argc, char **argv)
 		return (errors_handler(-2));
 	if (return_value != 0)
 		return (errors_handler(-2));
-	// print_stacks(data);
 	if (ft_sort(data) != 0)
 	{
 		free(data);
 		print_stacks(data);
 		return (errors_handler(-3));
 	}
-	// write(1, "End\n", 5);
 	free(data);
-	// print_stacks(data);
-	// printf("size = %ld", data->a_len);
 	return (0);
 }
 

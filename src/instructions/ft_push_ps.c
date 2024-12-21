@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 13:54:16 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/19 16:11:14 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/21 15:16:33 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
  * Do nothing if b doesn't exit.
  *
  * @param data structure that handles the stacks
+ * @param print_name set to 1 to print it's name
  */
-void	ft_pa(t_data *data)
+void	ft_pa(t_data *data, t_bool print_name)
 {
 	t_stack	*temp;
 
@@ -29,7 +30,8 @@ void	ft_pa(t_data *data)
 	data->b = data->b->next;
 	temp->next = NULL;
 	ft_stackadd_front(&data->a, temp);
-	write(1, "pa\n", 3);
+	if (print_name == 1)
+		write(1, "pa\n", 3);
 }
 
 /**
@@ -38,8 +40,9 @@ void	ft_pa(t_data *data)
  * Do nothing if b doesn't exit.
  *
  * @param data structure that handles the stacks
+ * @param print_name set to 1 to print it's name
  */
-void	ft_pb(t_data *data)
+void	ft_pb(t_data *data, t_bool print_name)
 {
 	t_stack	*temp;
 
@@ -49,5 +52,6 @@ void	ft_pb(t_data *data)
 	data->a = data->a->next;
 	temp->next = NULL;
 	ft_stackadd_front(&data->b, temp);
-	write(1, "pb\n", 3);
+	if (print_name == 1)
+		write(1, "pb\n", 3);
 }

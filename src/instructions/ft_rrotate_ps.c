@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 14:39:02 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/20 15:15:37 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/21 15:22:59 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
  * and the last becomes first.
  *
  * @param data structure that handles the stacks
+ * @param print_name set to 1 to print it's name
  */
-void	ft_rra(t_data *data)
+void	ft_rra(t_data *data, t_bool print_name)
 {
 	t_stack	*temp;
-	t_stack	*previous_head;
 	t_stack	*previous;
 
 	temp = data->a;
@@ -33,35 +33,11 @@ void	ft_rra(t_data *data)
 		temp = temp->next;
 	}
 	previous->next = NULL;
-	previous_head = data->a;
+	temp->next = data->a;
 	data->a = temp;
-	data->a->next = previous_head;
-	write(1, "rra\n", 4);
+	if (print_name == 1)
+		write(1, "rra\n", 4);
 }
-
-// void	ft_rra(t_data *data)
-// {
-// 	t_stack	*temp;
-// 	t_stack	*previous;
-
-// 	// Vérifier si la pile est vide ou contient un seul élément
-// 	if (data->a == NULL || data->a->next == NULL)
-// 		return ;
-// 	temp = data->a;
-// 	previous = NULL;
-// 	// Parcourir jusqu'au dernier élément
-// 	while (temp->next != NULL)
-// 	{
-// 		previous = temp;
-// 		temp = temp->next;
-// 	}
-// 	// Mise à jour des liens pour effectuer la rotation inversée
-// 	previous->next = NULL;
-// 	temp->next = data->a;
-// 	data->a = temp;
-// 	// Afficher l'opération
-// 	write(1, "rra\n", 4);
-// }
 
 /**
  * @brief Reverse Rotate b :
@@ -69,11 +45,11 @@ void	ft_rra(t_data *data)
  * and the last becomes first.
  *
  * @param data structure that handles the stacks
+ * @param print_name set to 1 to print it's name
  */
-void	ft_rrb(t_data *data)
+void	ft_rrb(t_data *data, t_bool print_name)
 {
 	t_stack	*temp;
-	t_stack	*previous_head;
 	t_stack	*previous;
 
 	temp = data->b;
@@ -84,10 +60,10 @@ void	ft_rrb(t_data *data)
 		temp = temp->next;
 	}
 	previous->next = NULL;
-	previous_head = data->b;
+	temp->next = data->b;
 	data->b = temp;
-	data->b->next = previous_head;
-	write(1, "rrb\n", 4);
+	if (print_name == 1)
+		write(1, "rrb\n", 4);
 }
 
 /**
@@ -95,32 +71,12 @@ void	ft_rrb(t_data *data)
  * Executes Reverse Rotate a and Reverse Rotate b.
  *
  * @param data structure that handles the stacks
+ * @param print_name set to 1 to print it's name
  */
-void	ft_rrr(t_data *data)
+void	ft_rrr(t_data *data, t_bool print_name)
 {
-	t_stack	*temp;
-	t_stack	*previous_head;
-	t_stack	*previous;
-
-	temp = data->a;
-	while (temp->next != NULL)
-	{
-		previous = temp;
-		temp = temp->next;
-	}
-	previous->next = NULL;
-	previous_head = data->a;
-	data->a = temp;
-	data->a->next = previous_head;
-	temp = data->b;
-	while (temp->next != NULL)
-	{
-		previous = temp;
-		temp = temp->next;
-	}
-	previous->next = NULL;
-	previous_head = data->b;
-	data->b = temp;
-	data->b->next = previous_head;
-	write(1, "rrr\n", 4);
+	ft_rra(data, 0);
+	ft_rrb(data, 0);
+	if (print_name == 1)
+		write(1, "rrr\n", 4);
 }

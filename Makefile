@@ -92,9 +92,16 @@ $(P_OBJ)%.o: $(P_SRC)%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(DEPENDANCIES) -I $(P_INC) -c $< -o $@
 
-checker: $(OBJS) src/checker/checker.c
-	ar -rcs libpush_swap.a $^
-	$(CC) $(CFLAGS) -I $(P_INC) -o $@ src/checker/checker.c libpush_swap.a
+checker: $(OBJS) ./lib/libgnl.a src/checker/checker.c 
+	ar -rcs ./lib/libpush_swap.a $(OBJS)
+	$(CC) $(CFLAGS) -g3 -I $(P_INC) -o $@ src/checker/checker.c src/checker/checker_parsing.c -Llib -lpush_swap -lgnl
+
+lib/libgnl.a:
+	mkdir -p .obj .obj/checker
+	$(CC) $(CFLAGS) -g3 -I ./ -c src/checker/get_next_line.c -o .obj/checker/get_next_line.o
+	$(CC) $(CFLAGS) -g3 -I ./ -c src/checker/get_next_line_utils.c -o .obj/checker/get_next_line_utils.o
+	ar -rcs libgnl.a .obj/checker/get_next_line.o .obj/checker/get_next_line_utils.o
+	mv libgnl.a ./lib
 
 #############################################################################################
 #                                                                                           #
@@ -109,6 +116,7 @@ fclean:
 	@$(MAKE) --no-print-directory clean
 	rm -f $(NAME)
 	rm -f libpush_swap.a
+	rm -f ./lib/libgnl.a
 	rm -f checker
 
 re:
