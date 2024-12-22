@@ -108,14 +108,14 @@ static int	fill_stack_single_string(char *str, t_data *data)
 			str++;
 		value = ft_atoi(str);
 		if (value != ft_atol(str))
-			return ((void)free(data), -1);
+			return (-1);
 		while (((*str >= '0' && *str <= '9') || *str == '-') && *str != ' ')
 			str++;
 		while (*str == ' ')
 			str++;
 		temp = ft_stacknew(value);
 		if (temp == NULL || verify_duplicates(value, data->a) == -1)
-			return ((void)free(data), -1);
+			return (-4);
 		data->a_len++;
 		ft_stackadd_back(&(data->a), temp);
 	}
@@ -146,12 +146,12 @@ int	fill_stack(int argc, char **argv, t_data *data)
 	{
 		value = ft_atoi(argv[argc - 1]);
 		if (value != ft_atol(argv[argc - 1]))
-			return ((void)free(data), -2);
-		if (verify_duplicates(value, data->a) == -1)
-			return ((void)free(data), -3);
+			return (-2);
+		if (data->a_len > 1 && verify_duplicates(value, data->a) == -1)
+			return (-3);
 		temp = ft_stacknew(value);
 		if (temp == NULL)
-			return ((void)free(data), -4);
+			return (-4);
 		data->a_len++;
 		ft_stackadd_front(&(data->a), temp);
 		argc--;

@@ -49,11 +49,15 @@ void	ft_stackadd_front(t_stack **stack, t_stack *new)
 
 t_stack	*ft_stacklast(t_stack *stack)
 {
-	if (stack == NULL)
-		return (NULL);
-	while (stack->next != NULL)
+	t_stack *handler;
+
+	handler = stack;
+	while (stack != NULL)
+	{
+		handler = stack;
 		stack = stack->next;
-	return (stack);
+	}
+	return (handler);
 }
 
 /**
@@ -73,4 +77,37 @@ void	ft_stackadd_back(t_stack **stack, t_stack *new)
 		*stack = new;
 	else
 		last->next = new;
+}
+
+/**
+ * @brief Supprime et libère la mémoire de l’élément passé en paramètre, 
+ * et de tous les éléments qui suivent, à l’aide de ’del’ et de free(3)
+ * Enfin, le pointeur initial doit être mis à NULL.
+ * 
+ * @param data structure that handles the stacks
+ */
+void	ft_stackclear(t_data *data)
+{
+	t_stack	*stack_a;
+	t_stack	*temp_a;
+	t_stack	*stack_b;
+	t_stack	*temp_b;
+
+	if (data == NULL)
+		return ;
+	stack_a = data->a;
+	while (stack_a != NULL)
+	{
+		temp_a = stack_a;
+		stack_a = stack_a->next;
+		free(temp_a);
+	}
+	stack_b = data->b;
+	while (stack_b != NULL)
+	{
+		temp_b = stack_b;
+		stack_b = stack_b->next;
+		free(temp_b);
+	}
+	free(data);
 }

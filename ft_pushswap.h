@@ -41,6 +41,7 @@ t_stack	*ft_stacknew(int content);
 void	ft_stackadd_front(t_stack **lst, t_stack *new);
 t_stack	*ft_stacklast(t_stack *stack);
 void	ft_stackadd_back(t_stack **stack, t_stack *new);
+void	ft_stackclear(t_data *data);
 
 // Filling stack related functions
 int		fill_stack(int argc, char **argv, t_data *data);

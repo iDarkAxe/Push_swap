@@ -5,7 +5,7 @@ DEPENDANCIES = -MMD -MP
 NAME = push_swap
 
 DEBUG_CC = clang
-DEBUG_CFLAGS = -Weverything -Wno-padded -pedantic -O2 -Wwrite-strings -Wconversion
+DEBUG_CFLAGS = -Weverything -Wno-padded -pedantic -O2 -Wwrite-strings -Wconversion -Wno-unsafe-buffer-usage
 
 #############################################################################################
 #                                                                                           #

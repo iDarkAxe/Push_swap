@@ -14,7 +14,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int	errors_handler(int error);
+static int	errors_handler(int error, t_data *data);
+static int init_data(t_data *data);
 
 /**
  * @brief Main function
@@ -27,29 +28,31 @@ int	errors_handler(int error);
 int	main(int argc, char **argv)
 {
 	t_data	*data;
-	int		return_value;
 
 	if (argc == 1)
 		return (-1);
 	data = malloc(sizeof(t_data));
-	if (data == NULL)
-		return (errors_handler(-1));
-	return_value = fill_stack(argc, argv, data);
-	if (return_value == -1)
-		return (errors_handler(-2));
-	if (return_value != 0)
-		return (errors_handler(-2));
+	if (init_data(data) != 0)
+		return (errors_handler(-1, data));
+	if (fill_stack(argc, argv, data) != 0)
+		return (errors_handler(-2, data));
 	if (ft_sort(data) != 0)
 	{
-		free(data);
 		print_stacks(data);
-		return (errors_handler(-3));
+		return (errors_handler(-3, data));
 	}
-	free(data);
+	ft_stackclear(data);
 	return (0);
 }
 
-int	errors_handler(int error)
+/**
+ * @brief Handles multiple errors types
+ * 
+ * @param error 
+ * @param data 
+ * @return int 
+ */
+static int	errors_handler(int error, t_data *data)
 {
 	if (error == -1)
 		write(2, "Error\n", 6);
@@ -57,5 +60,23 @@ int	errors_handler(int error)
 		write(2, "Error remplissage\n", 18);
 	if (error == -3)
 		write(2, "Error, ce n'est pas trié\n", 27);
+	ft_stackclear(data);
 	return (error);
+}
+
+/**
+ * @brief Initialize Data to avoid using calloc
+ * 
+ * @param data 
+ * @return int 
+ */
+static int init_data(t_data *data)
+{
+	if (data == NULL)
+		return (-1);
+	data->a = NULL;
+	data->b = NULL;
+	data->a_len = 0;
+	data->b_len = 0;
+	return (0);
 }
