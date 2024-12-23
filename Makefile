@@ -18,12 +18,16 @@ P_INSTRUCTIONS = instructions/
 P_STACK = stack/
 P_SORT = sort/
 P_OPTIONAL = optional/
+P_CHECKER = checker/
 
 # Object directories
 P_OBJ = .obj/
 
 # Header directories
-P_INC = ./
+P_INC = inc/
+
+# Libraries directories
+P_LIB = lib/
 
 #############################################################################################
 #                                                                                           #
@@ -55,6 +59,14 @@ SORT = \
 OPTIONAL = \
 	test_only.c
 
+CHECKER = \
+	checker.c \
+	checker_parsing.c
+
+GNL = \
+	get_next_line.c \
+	get_next_line_utils.c
+
 #############################################################################################
 #                                                                                           #
 #                                        MANIPULATION                                       #
@@ -67,9 +79,18 @@ SRCS =	\
 	$(addprefix $(P_SRC)$(P_SORT), $(SORT)) \
 	$(addprefix $(P_SRC)$(P_OPTIONAL), $(OPTIONAL))
 
+SRCS_CHECKER = \
+	$(addprefix $(P_SRC)$(P_CHECKER), $(CHECKER))
+
+SRCS_GNL = \
+	$(addprefix $(P_SRC)$(P_CHECKER), $(GNL))
+
 # List of object files (redirect to P_OBJ)
 OBJS = $(subst $(P_SRC), $(P_OBJ), $(SRCS:.c=.o))
 P_OBJS = $(subst $(P_SRC), $(P_OBJ), $(SRCS))
+
+OBJS_CHECKER = $(subst $(P_SRC), $(P_OBJ), $(SRCS_CHECKER:.c=.o))
+OBJS_GNL = $(subst $(P_SRC), $(P_OBJ), $(SRCS_GNL:.c=.o))
 
 # List of depedencies
 DEPS = $(OBJS:%.o=%.d)
@@ -84,24 +105,24 @@ INCS = $(addprefix $(P_INC)/, $(INC))
 #############################################################################################
 all: $(NAME)
 
-# Create static library
+# Create push_swap executable
 $(NAME): $(OBJS) $(P_OBJ)main.o
 	$(CC) $(CFLAGS) $(DEPENDANCIES) -o $(NAME) $^
 
+# Custom rule to compilate all .c with there path
 $(P_OBJ)%.o: $(P_SRC)%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(DEPENDANCIES) -I $(P_INC) -c $< -o $@
 
-checker: $(OBJS) ./lib/libgnl.a src/checker/checker.c 
-	ar -rcs ./lib/libpush_swap.a $(OBJS)
-	$(CC) $(CFLAGS) -g3 -I $(P_INC) -o $@ src/checker/checker.c src/checker/checker_parsing.c -Llib -lpush_swap -lgnl
+# Crate
+checker: $(OBJS) $(P_LIB)libgnl.a $(OBJS_CHECKER)
+	mkdir -p $(P_LIB)
+	ar -rcs $(P_LIB)libpush_swap.a $(OBJS)
+	$(CC) $(CFLAGS) -I $(P_INC) -o $@ $(OBJS_CHECKER) -L$(P_LIB) -lpush_swap -lgnl
 
-lib/libgnl.a:
-	mkdir -p .obj .obj/checker
-	$(CC) $(CFLAGS) -g3 -I ./ -c src/checker/get_next_line.c -o .obj/checker/get_next_line.o
-	$(CC) $(CFLAGS) -g3 -I ./ -c src/checker/get_next_line_utils.c -o .obj/checker/get_next_line_utils.o
-	ar -rcs libgnl.a .obj/checker/get_next_line.o .obj/checker/get_next_line_utils.o
-	mv libgnl.a ./lib
+$(P_LIB)libgnl.a: $(OBJS_GNL)
+	@mkdir -p $(P_LIB)
+	ar -rcs $(P_LIB)libgnl.a $^
 
 #############################################################################################
 #                                                                                           #
@@ -114,10 +135,11 @@ clean:
 
 fclean:
 	@$(MAKE) --no-print-directory clean
+	rm -rfd $(P_LIB)
 	rm -f $(NAME)
-	rm -f libpush_swap.a
-	rm -f ./lib/libgnl.a
 	rm -f checker
+	
+	
 
 re:
 	@$(MAKE) --no-print-directory fclean
