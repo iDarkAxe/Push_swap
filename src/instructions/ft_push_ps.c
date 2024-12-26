@@ -30,6 +30,8 @@ void	ft_pa(t_data *data, t_bool print_name)
 	data->b = data->b->next;
 	temp->next = NULL;
 	ft_stackadd_front(&data->a, temp);
+	data->b_len--;
+	data->a_len++;
 	if (print_name == 1)
 		write(1, "pa\n", 3);
 }
@@ -52,6 +54,8 @@ void	ft_pb(t_data *data, t_bool print_name)
 	data->a = data->a->next;
 	temp->next = NULL;
 	ft_stackadd_front(&data->b, temp);
+	data->a_len--;
+	data->b_len++;
 	if (print_name == 1)
 		write(1, "pb\n", 3);
 }
