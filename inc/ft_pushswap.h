@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:08:30 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/21 15:20:41 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/28 23:18:17 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ typedef char	t_bool;
 // Stack related functions
 t_stack	*ft_stacknew(int content);
 void	ft_stackadd_front(t_stack **lst, t_stack *new);
-t_stack	*ft_stacklast(t_stack *stack);
-void	ft_stackadd_back(t_stack **stack, t_stack *new);
-void	ft_stackclear(t_data *data);
+t_stack	*ft_stacklast(t_stack *stack, size_t stack_len);
+void	ft_stackadd_back(t_stack **stack, t_stack *new, size_t stack_len);
+int		ft_stackclear(t_data *data);
 
 // Filling stack related functions
 int		fill_stack(int argc, char **argv, t_data *data);
 
 // Verify related functions
-int		verify_duplicates(int value, t_stack *data);
+int		verify_duplicates(int value, t_stack *data, size_t stack_len);
 long	ft_atol(const char *nptr);
 
 // Sort related functions

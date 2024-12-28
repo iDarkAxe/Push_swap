@@ -17,7 +17,7 @@
 # include <stdlib.h>
 
 # ifndef PRINT_NAME
-# define PRINT_NAME 0
+#  define PRINT_NAME 0
 # endif
 
 void	parse_and_execute(t_data *data);

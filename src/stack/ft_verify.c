@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:03:00 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/16 18:06:35 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/28 23:00:15 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@
  * @param stack	stack where to search 
  * @return int 0, OK not found, -1 error
  */
-int	verify_duplicates(int value, t_stack *stack)
+int	verify_duplicates(int value, t_stack *stack, size_t stack_len)
 {
 	t_stack	*temp;
+	size_t	len;
 
 	temp = stack;
-	while (temp != NULL)
+	len = 0;
+	while (temp != NULL && len < stack_len)
 	{
 		if (value == temp->value)
 			return (-1);
 		temp = temp->next;
+		len++;
 	}
 	return (0);
 }

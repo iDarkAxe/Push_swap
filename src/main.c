@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:39:03 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/21 15:39:29 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/29 00:07:47 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 #include <unistd.h>
 
 static int	errors_handler(int error, t_data *data);
-static int init_data(t_data *data);
-
-void make_it_circular(t_data *data);
+static int	init_data(t_data *data);
 
 /**
  * @brief Main function
@@ -38,30 +36,13 @@ int	main(int argc, char **argv)
 		return (errors_handler(-1, data));
 	if (fill_stack(argc, argv, data) != 0)
 		return (errors_handler(-2, data));
-	make_it_circular(data);
-	print_stacks(data);
-	ft_pb(data, 1);
-	print_stacks(data);
-	ft_ra(data, 1);
-	print_stacks(data);
-	// if (ft_sort(data) != 0)
-	// {
-	// 	print_stacks(data);
-	// 	return (errors_handler(-3, data));
-	// }
+	if (ft_sort(data) != 0)
+	{
+		print_stacks(data);
+		return (errors_handler(-3, data));
+	}
 	ft_stackclear(data);
 	return (0);
-}
-
-void make_it_circular(t_data *data)
-{
-	t_stack *temp;
-
-	temp = data->a;
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = data->a;
-	data->a->prev = temp;
 }
 
 /**
@@ -89,7 +70,7 @@ static int	errors_handler(int error, t_data *data)
  * @param data structure that handles the stacks
  * @return int 0 OK, -1 is error
  */
-static int init_data(t_data *data)
+static int	init_data(t_data *data)
 {
 	if (data == NULL)
 		return (-1);
