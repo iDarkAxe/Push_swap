@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:08:30 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/21 15:20:41 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/28 23:18:17 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct s_stack
 {
+	struct s_stack	*prev;
 	struct s_stack	*next;
 	int				value;
 }	t_stack;
@@ -39,15 +40,15 @@ typedef char	t_bool;
 // Stack related functions
 t_stack	*ft_stacknew(int content);
 void	ft_stackadd_front(t_stack **lst, t_stack *new);
-t_stack	*ft_stacklast(t_stack *stack);
-void	ft_stackadd_back(t_stack **stack, t_stack *new);
-void	ft_stackclear(t_data *data);
+t_stack	*ft_stacklast(t_stack *stack, size_t stack_len);
+void	ft_stackadd_back(t_stack **stack, t_stack *new, size_t stack_len);
+int		ft_stackclear(t_data *data);
 
 // Filling stack related functions
 int		fill_stack(int argc, char **argv, t_data *data);
 
 // Verify related functions
-int		verify_duplicates(int value, t_stack *data);
+int		verify_duplicates(int value, t_stack *data, size_t stack_len);
 long	ft_atol(const char *nptr);
 
 // Sort related functions
@@ -72,7 +73,7 @@ void	ft_rrb(t_data *data, t_bool print_name);
 void	ft_rrr(t_data *data, t_bool print_name);
 
 // OPTIONAL
-void	print_stack(t_stack *stack);
+void	print_stack(t_stack *stack, size_t len);
 // Adds OF OPTIONAL
 void	print_stacks(t_data *data);
 int		fill_stacks(int argc, char **argv, t_data *data);

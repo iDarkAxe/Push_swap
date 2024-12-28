@@ -6,12 +6,14 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 12:58:40 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/15 17:29:52 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/28 23:51:08 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 #include <stdlib.h>
+
+static int	ft_stackclear_b(t_data *data);
 
 /**
  * @brief Allocates and returns the newly created element
@@ -29,6 +31,7 @@ t_stack	*ft_stacknew(int content)
 	if (element == NULL)
 		return (NULL);
 	element->value = content;
+	element->prev = NULL;
 	element->next = NULL;
 	return (element);
 }
@@ -43,21 +46,19 @@ void	ft_stackadd_front(t_stack **stack, t_stack *new)
 {
 	if (new == NULL)
 		return ;
-	new->next = *stack;
-	*stack = new;
-}
-
-t_stack	*ft_stacklast(t_stack *stack)
-{
-	t_stack *handler;
-
-	handler = stack;
-	while (stack != NULL)
+	if (*stack != NULL && (*stack)->prev != NULL)
 	{
-		handler = stack;
-		stack = stack->next;
+		new->prev = (*stack)->prev;
+		new->next = *stack;
+		(*stack)->prev->next = new;
+		(*stack)->prev = new;
 	}
-	return (handler);
+	else
+	{
+		new->prev = new;
+		new->next = new;
+	}
+	*stack = new;
 }
 
 /**
@@ -66,48 +67,80 @@ t_stack	*ft_stacklast(t_stack *stack)
  * @param stack head of stack
  * @param new element to add
  */
-void	ft_stackadd_back(t_stack **stack, t_stack *new)
+void	ft_stackadd_back(t_stack **stack, t_stack *new, size_t stack_len)
 {
 	t_stack	*last;
+	t_stack	*stack_cpy;
+	size_t	index;
 
+	index = 0;
 	if (stack == NULL || new == NULL)
 		return ;
-	last = ft_stacklast(*stack);
+	last = NULL;
+	stack_cpy = *stack;
+	while (stack_cpy != NULL && index < stack_len - 1)
+	{
+		last = stack_cpy;
+		stack_cpy = stack_cpy->next;
+		index++;
+	}
 	if (last == NULL)
 		*stack = new;
 	else
+	{
 		last->next = new;
+		new->prev = last;
+		new->next = *stack;
+		(*stack)->prev = new;
+	}
 }
 
 /**
- * @brief Supprime et libère la mémoire de l’élément passé en paramètre, 
- * et de tous les éléments qui suivent, à l’aide de ’del’ et de free(3)
- * Enfin, le pointeur initial doit être mis à NULL.
+ * @brief Remove all elements from stack a and b
  * 
  * @param data structure that handles the stacks
+ * @return int 0 OK, -1 is error
  */
-void	ft_stackclear(t_data *data)
+int	ft_stackclear(t_data *data)
 {
-	t_stack	*stack_a;
 	t_stack	*temp_a;
-	t_stack	*stack_b;
-	t_stack	*temp_b;
 
 	if (data == NULL)
-		return ;
-	stack_a = data->a;
-	while (stack_a != NULL)
+		return (-1);
+	if (data->a == NULL)
+		return (ft_stackclear_b(data));
+	data->a->prev->next = NULL;
+	while (data->a != NULL && data->a_len > 0)
 	{
-		temp_a = stack_a;
-		stack_a = stack_a->next;
+		temp_a = data->a;
+		data->a = data->a->next;
 		free(temp_a);
+		data->a_len--;
 	}
-	stack_b = data->b;
-	while (stack_b != NULL)
-	{
-		temp_b = stack_b;
-		stack_b = stack_b->next;
-		free(temp_b);
-	}
+	ft_stackclear_b(data);
 	free(data);
+	return (0);
+}
+
+/**
+ * @brief Remove all elements from stack b
+ * 
+ * @param data structure that handles the stacks
+ * @return int 0 OK, -1 is error
+ */
+static int	ft_stackclear_b(t_data *data)
+{
+	t_stack	*temp_b;
+
+	if (data->b == NULL)
+		return (-1);
+	data->b->prev->next = NULL;
+	while (data->b != NULL && data->b_len > 0)
+	{
+		temp_b = data->b;
+		data->b = data->b->next;
+		free(temp_b);
+		data->b_len--;
+	}
+	return (0);
 }

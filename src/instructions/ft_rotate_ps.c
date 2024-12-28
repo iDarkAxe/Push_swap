@@ -22,12 +22,7 @@
  *  */
 void	ft_ra(t_data *data, t_bool print_name)
 {
-	t_stack	*temp;
-
-	temp = data->a;
 	data->a = data->a->next;
-	ft_stacklast(data->a)->next = temp;
-	temp->next = NULL;
 	if (print_name == 1)
 		write(1, "ra\n", 3);
 }
@@ -42,12 +37,7 @@ void	ft_ra(t_data *data, t_bool print_name)
  */
 void	ft_rb(t_data *data, t_bool print_name)
 {
-	t_stack	*temp;
-
-	temp = data->b;
 	data->b = data->b->next;
-	ft_stacklast(data->b)->next = temp;
-	temp->next = NULL;
 	if (print_name == 1)
 		write(1, "rb\n", 3);
 }

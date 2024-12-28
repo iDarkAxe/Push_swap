@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 00:13:47 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/21 15:39:32 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/28 23:03:18 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 
 static int	errors_handler(int error, t_data *data);
-static int init_data(t_data *data);
+static int	init_data(t_data *data);
 
 /**
  * @brief Main function
@@ -67,7 +67,7 @@ static int	errors_handler(int error, t_data *data)
  * @param data 
  * @return int 
  */
-static int init_data(t_data *data)
+static int	init_data(t_data *data)
 {
 	if (data == NULL)
 		return (-1);

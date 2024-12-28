@@ -22,19 +22,7 @@
  */
 void	ft_rra(t_data *data, t_bool print_name)
 {
-	t_stack	*temp;
-	t_stack	*previous;
-
-	temp = data->a;
-	previous = NULL;
-	while (temp->next != NULL)
-	{
-		previous = temp;
-		temp = temp->next;
-	}
-	previous->next = NULL;
-	temp->next = data->a;
-	data->a = temp;
+	data->a = data->a->prev;
 	if (print_name == 1)
 		write(1, "rra\n", 4);
 }
@@ -49,19 +37,7 @@ void	ft_rra(t_data *data, t_bool print_name)
  */
 void	ft_rrb(t_data *data, t_bool print_name)
 {
-	t_stack	*temp;
-	t_stack	*previous;
-
-	temp = data->b;
-	previous = NULL;
-	while (temp->next != NULL)
-	{
-		previous = temp;
-		temp = temp->next;
-	}
-	previous->next = NULL;
-	temp->next = data->b;
-	data->b = temp;
+	data->b = data->b->prev;
 	if (print_name == 1)
 		write(1, "rrb\n", 4);
 }

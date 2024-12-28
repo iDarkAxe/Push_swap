@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:39:03 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/21 15:39:29 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/29 00:07:47 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 
 static int	errors_handler(int error, t_data *data);
-static int init_data(t_data *data);
+static int	init_data(t_data *data);
 
 /**
  * @brief Main function
@@ -48,9 +48,9 @@ int	main(int argc, char **argv)
 /**
  * @brief Handles multiple errors types
  * 
- * @param error 
- * @param data 
- * @return int 
+ * @param error Identifier of error
+ * @param data structure that handles the stacks
+ * @return int 0 OK, -1 is error
  */
 static int	errors_handler(int error, t_data *data)
 {
@@ -67,10 +67,10 @@ static int	errors_handler(int error, t_data *data)
 /**
  * @brief Initialize Data to avoid using calloc
  * 
- * @param data 
- * @return int 
+ * @param data structure that handles the stacks
+ * @return int 0 OK, -1 is error
  */
-static int init_data(t_data *data)
+static int	init_data(t_data *data)
 {
 	if (data == NULL)
 		return (-1);
