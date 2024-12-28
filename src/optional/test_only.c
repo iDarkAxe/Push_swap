@@ -16,26 +16,59 @@
 // DONT FORGET TO REMOVE
 #include <stdio.h>
 
-void	print_stack(t_stack *stack)
+void	print_stack(t_stack *stack, size_t len)
 {
 	t_stack	*index;
 	size_t	number;
 
 	number = 0;
 	index = stack;
-	while (index != NULL)
+	while (index != NULL && number < len)
 	{
-		printf("stack[%ld] = %d\n", number++, index->value);
+		printf("stack[%zu] = %d\n", number++, index->value);
+		printf("adress is[%p]\n", index);
 		index = index->next;
 	}
 }
+// {
+// 	t_stack	*index;
+// 	t_stack *initial;
+// 	size_t	number;
+
+// 	number = 0;
+// 	initial = stack;
+// 	index = stack;
+// 	while (index != NULL || (index != initial && number != 0))
+// 	{
+// 		printf("stack[%zu] = %d\n", number++, index->value);
+// 		printf("adress is[%p]\n", index);
+// 		index = index->next;
+// 		if (index == initial)
+// 			break ;
+// 	}
+// }
 
 void	print_stacks(t_data *data)
 {
-	printf("a :\n");
-	print_stack(data->a);
-	printf("b :\n");
-	print_stack(data->b);
+	if (data == NULL)
+	{
+		printf("data is NULL\n");
+		return ;
+	}
+	if (data->a == NULL)
+		printf("Stack A is NULL\n");
+	else
+	{
+		printf("a :\n");
+		print_stack(data->a, data->a_len);
+	}
+	if (data->b == NULL)
+		printf("Stack B is NULL\n");
+	else
+	{
+		printf("b :\n");
+		print_stack(data->b, data->b_len);
+	}
 }
 
 int	fill_stacks(int argc, char **argv, t_data *data)
@@ -51,12 +84,12 @@ int	fill_stacks(int argc, char **argv, t_data *data)
 		value = atoi(argv[argc - 1]);
 		temp_a = ft_stacknew(value);
 		if (temp_a == NULL)
-			return ((void)free(data), -1);
+			return (ft_stackclear(data), -1);
 		data->a_len++;
 		temp_b = ft_stacknew(value);
 		ft_stackadd_front(&(data->a), temp_a);
 		if (temp_b == NULL)
-			return ((void)free(data), -1);
+			return (ft_stackclear(data), -1);
 		data->b_len++;
 		ft_stackadd_front(&(data->b), temp_b);
 		argc--;

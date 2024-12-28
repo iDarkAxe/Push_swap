@@ -22,6 +22,7 @@
 
 typedef struct s_stack
 {
+	struct s_stack	*prev;
 	struct s_stack	*next;
 	int				value;
 }	t_stack;
@@ -72,7 +73,7 @@ void	ft_rrb(t_data *data, t_bool print_name);
 void	ft_rrr(t_data *data, t_bool print_name);
 
 // OPTIONAL
-void	print_stack(t_stack *stack);
+void	print_stack(t_stack *stack, size_t len);
 // Adds OF OPTIONAL
 void	print_stacks(t_data *data);
 int		fill_stacks(int argc, char **argv, t_data *data);

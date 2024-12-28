@@ -17,6 +17,8 @@
 static int	errors_handler(int error, t_data *data);
 static int init_data(t_data *data);
 
+void make_it_circular(t_data *data);
+
 /**
  * @brief Main function
  * /!\ require arguments to work
@@ -36,21 +38,38 @@ int	main(int argc, char **argv)
 		return (errors_handler(-1, data));
 	if (fill_stack(argc, argv, data) != 0)
 		return (errors_handler(-2, data));
-	if (ft_sort(data) != 0)
-	{
-		print_stacks(data);
-		return (errors_handler(-3, data));
-	}
+	make_it_circular(data);
+	print_stacks(data);
+	ft_pb(data, 1);
+	print_stacks(data);
+	ft_ra(data, 1);
+	print_stacks(data);
+	// if (ft_sort(data) != 0)
+	// {
+	// 	print_stacks(data);
+	// 	return (errors_handler(-3, data));
+	// }
 	ft_stackclear(data);
 	return (0);
+}
+
+void make_it_circular(t_data *data)
+{
+	t_stack *temp;
+
+	temp = data->a;
+	while (temp->next != NULL)
+		temp = temp->next;
+	temp->next = data->a;
+	data->a->prev = temp;
 }
 
 /**
  * @brief Handles multiple errors types
  * 
- * @param error 
- * @param data 
- * @return int 
+ * @param error Identifier of error
+ * @param data structure that handles the stacks
+ * @return int 0 OK, -1 is error
  */
 static int	errors_handler(int error, t_data *data)
 {
@@ -67,8 +86,8 @@ static int	errors_handler(int error, t_data *data)
 /**
  * @brief Initialize Data to avoid using calloc
  * 
- * @param data 
- * @return int 
+ * @param data structure that handles the stacks
+ * @return int 0 OK, -1 is error
  */
 static int init_data(t_data *data)
 {

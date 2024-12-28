@@ -158,13 +158,13 @@ flcear: fclean
 #############################################################################################
 # Debugging
 debug:
-	$(CC) $(CFLAGS) -g3 -D DEBUG=1 -I ./ $(SRCS) $(P_SRC)main.c -o $(NAME) 
+	$(CC) $(CFLAGS) -g3 -D DEBUG=1 -I $(P_INC) $(SRCS) $(P_SRC)main.c -o $(NAME) 
 
 # debug:
 # 	@$(MAKE) --no-print-directory DEBUG=1 all
 
 debug-cc:
-	$(DEBUG_CC) $(CFLAGS) -g3 $(DEBUG_CFLAGS) -D DEBUG=1 -I ./ -o $(NAME) $(SRCS) $(P_SRC)main.c
+	$(DEBUG_CC) $(CFLAGS) -g3 $(DEBUG_CFLAGS) -D DEBUG=1 -I $(P_INC) -o $(NAME) $(SRCS) $(P_SRC)main.c
 
 debug-print:
 	@echo "$(Red)Project: \n\t$(Blue)$(NAME)$(Color_Off)"

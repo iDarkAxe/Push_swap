@@ -29,6 +29,7 @@ t_stack	*ft_stacknew(int content)
 	if (element == NULL)
 		return (NULL);
 	element->value = content;
+	element->prev = NULL;
 	element->next = NULL;
 	return (element);
 }
@@ -44,20 +45,14 @@ void	ft_stackadd_front(t_stack **stack, t_stack *new)
 	if (new == NULL)
 		return ;
 	new->next = *stack;
+	if (*stack != NULL)
+		(*stack)->prev = new;
 	*stack = new;
 }
 
 t_stack	*ft_stacklast(t_stack *stack)
 {
-	t_stack *handler;
-
-	handler = stack;
-	while (stack != NULL)
-	{
-		handler = stack;
-		stack = stack->next;
-	}
-	return (handler);
+	return (stack->prev);
 }
 
 /**
@@ -76,8 +71,13 @@ void	ft_stackadd_back(t_stack **stack, t_stack *new)
 	if (last == NULL)
 		*stack = new;
 	else
+	{
 		last->next = new;
+		new->prev = last;
+	}
 }
+
+#include <stdio.h>
 
 /**
  * @brief Supprime et libère la mémoire de l’élément passé en paramètre, 
@@ -92,22 +92,30 @@ void	ft_stackclear(t_data *data)
 	t_stack	*temp_a;
 	t_stack	*stack_b;
 	t_stack	*temp_b;
+	size_t	len;
 
 	if (data == NULL)
 		return ;
 	stack_a = data->a;
-	while (stack_a != NULL)
+	len = 0;
+	while (stack_a != NULL && len < data->a_len)
 	{
 		temp_a = stack_a;
 		stack_a = stack_a->next;
 		free(temp_a);
+		len++;
 	}
+	data->a = NULL;
 	stack_b = data->b;
-	while (stack_b != NULL)
+	len = 0;
+	while (stack_b != NULL && len < data->b_len)
 	{
 		temp_b = stack_b;
 		stack_b = stack_b->next;
 		free(temp_b);
+		len++;
 	}
+	data->b = NULL;
 	free(data);
+	data = NULL;
 }
