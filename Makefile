@@ -1,11 +1,11 @@
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re bonus clean-lib clean-bin clean-obj debug debug-cc debug-print
 CC = gcc
 CFLAGS = -Wall -Wextra
 DEPENDANCIES = -MMD -MP
 NAME = push_swap
 
 DEBUG_CC = clang
-DEBUG_CFLAGS = -Weverything -Wno-padded -pedantic -O2 -Wwrite-strings -Wconversion -Wno-unsafe-buffer-usage
+DEBUG_CFLAGS = -Weverything -Wno-padded -pedantic -O2 -Wwrite-strings -Wconversion -Wno-unsafe-buffer-usage -fsanitize=address -fsanitize=leak
 
 #############################################################################################
 #                                                                                           #
@@ -36,10 +36,15 @@ P_LIB = lib/
 #############################################################################################
 # Headers
 INC = \
-	ft_pushswap.h
+	ft_pushswap.h \
+	ft_checker.h \
+	ft_sort.h \
+	get_next_line.h \
+	ft_printf.h
 
 # Source files
-# SRC = 
+SRC = \
+	ft_push_swap.c
 
 INSTRUCTIONS = \
 	ft_push_ps.c \
@@ -57,7 +62,8 @@ SORT = \
 	ft_sort_hardcoded.c
 
 OPTIONAL = \
-	test_only.c
+	ft_print_stacks.c \
+	ft_print.c
 
 CHECKER = \
 	checker.c \
@@ -96,7 +102,7 @@ OBJS_GNL = $(subst $(P_SRC), $(P_OBJ), $(SRCS_GNL:.c=.o))
 DEPS = $(OBJS:%.o=%.d)
 
 # List of header files
-INCS = $(addprefix $(P_INC)/, $(INC))
+INCS = $(addprefix $(P_INC), $(INC))
 
 #############################################################################################
 #                                                                                           #
@@ -106,20 +112,27 @@ INCS = $(addprefix $(P_INC)/, $(INC))
 all: $(NAME)
 
 # Create push_swap executable
-$(NAME): $(OBJS) $(P_OBJ)main.o
-	$(CC) $(CFLAGS) $(DEPENDANCIES) -o $(NAME) $^
+$(NAME): $(P_OBJ)main.o $(P_LIB)libpush_swap.a 
+	$(CC) $(CFLAGS) $(DEPENDANCIES) -I $(P_INC) -o $(NAME) $< -L$(P_LIB) -lpush_swap
+
+# Create library used to create push_swap executable
+$(P_LIB)libpush_swap.a: $(OBJS)
+	@mkdir -p $(P_LIB)
+	ar -rcs $(P_LIB)libpush_swap.a $^
 
 # Custom rule to compilate all .c with there path
 $(P_OBJ)%.o: $(P_SRC)%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(DEPENDANCIES) -I $(P_INC) -c $< -o $@
 
-# Crate
-checker: $(OBJS) $(P_LIB)libgnl.a $(OBJS_CHECKER)
-	mkdir -p $(P_LIB)
-	ar -rcs $(P_LIB)libpush_swap.a $(OBJS)
-	$(CC) $(CFLAGS) -I $(P_INC) -o $@ $(OBJS_CHECKER) -L$(P_LIB) -lpush_swap -lgnl
+bonus: $(NAME) checker
 
+# Create checker executable using push_swap library and gnl library
+checker: $(P_LIB)libgnl.a $(P_LIB)libpush_swap.a $(OBJS_CHECKER)
+	@mkdir -p $(P_LIB)
+	$(CC) $(CFLAGS) $(DEPENDANCIES) -I $(P_INC) -o $@ $(OBJS_CHECKER) -L$(P_LIB) -lpush_swap -lgnl
+
+# Create gnl library
 $(P_LIB)libgnl.a: $(OBJS_GNL)
 	@mkdir -p $(P_LIB)
 	ar -rcs $(P_LIB)libgnl.a $^
@@ -133,13 +146,20 @@ $(P_LIB)libgnl.a: $(OBJS_GNL)
 clean:
 	rm -rfd $(P_OBJ)
 
-fclean:
-	@$(MAKE) --no-print-directory clean
+clean-lib:
 	rm -rfd $(P_LIB)
+
+clean-bin:
 	rm -f $(NAME)
 	rm -f checker
-	
-	
+
+clean-obj:
+	@$(MAKE) --no-print-directory clean
+
+fclean:
+	@$(MAKE) --no-print-directory clean-obj
+	@$(MAKE) --no-print-directory clean-lib
+	@$(MAKE) --no-print-directory clean-bin
 
 re:
 	@$(MAKE) --no-print-directory fclean
@@ -158,13 +178,10 @@ flcear: fclean
 #############################################################################################
 # Debugging
 debug:
-	$(CC) $(CFLAGS) -g3 -D DEBUG=1 -I $(P_INC) $(SRCS) $(P_SRC)main.c -o $(NAME) 
-
-# debug:
-# 	@$(MAKE) --no-print-directory DEBUG=1 all
+	$(CC) $(CFLAGS) -g3 -D DEBUG=1 -I $(P_INC) $(SRCS) -o $(NAME) 
 
 debug-cc:
-	$(DEBUG_CC) $(CFLAGS) -g3 $(DEBUG_CFLAGS) -D DEBUG=1 -I $(P_INC) -o $(NAME) $(SRCS) $(P_SRC)main.c
+	$(DEBUG_CC) $(CFLAGS) -g3 $(DEBUG_CFLAGS) -D DEBUG=1 -I $(P_INC) -o $(NAME) $(SRCS)
 
 debug-print:
 	@echo "$(Red)Project: \n\t$(Blue)$(NAME)$(Color_Off)"
@@ -172,6 +189,8 @@ debug-print:
 	@echo "$(Red)SRCS: \n\t$(Blue)$(SRCS)$(Color_Off)"
 	@echo ""
 	@echo "$(Red)OBJS: \n\t$(Blue)$(OBJS)$(Color_Off)"
+	@echo ""
+	@echo "$(Red)INCS: \n\t$(Blue)$(INCS)$(Color_Off)"
 
 #############################################################################################
 #                                                                                           #

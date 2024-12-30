@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:08:30 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/28 23:18:17 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/29 22:37:59 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stddef.h>
 # include <unistd.h>
 
+// Stack structure, doubly linked list
 typedef struct s_stack
 {
 	struct s_stack	*prev;
@@ -27,6 +28,7 @@ typedef struct s_stack
 	int				value;
 }	t_stack;
 
+// Data structure, contains the two stacks and there lengths
 typedef struct s_data
 {
 	size_t	a_len;
@@ -35,7 +37,11 @@ typedef struct s_data
 	t_stack	*b;
 }	t_data;
 
+// Boolean type for instructions
 typedef char	t_bool;
+
+// Main function
+int		ft_pushswap(int argc, char **argv);
 
 // Stack related functions
 t_stack	*ft_stacknew(int content);

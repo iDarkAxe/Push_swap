@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 15:39:03 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/30 23:05:34 by ppontet          ###   ########lyon.fr   */
+/*   Created: 2024/11/19 14:33:31 by ppontet           #+#    #+#             */
+/*   Updated: 2024/12/30 18:05:18 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_pushswap.h"
+#ifndef FT_PRINT_H
+# define FT_PRINT_H
 
-/**
- * @brief Calls only push_swap function
- * /!\ require arguments to work
- *
- * @param argc number of argument
- * @param argv array of string
- * @return int 0 OK, -1 is error
- */
-int	main(int argc, char **argv)
-{
-	return (ft_pushswap(argc, argv));
-}
+# include <stddef.h>
+# include <unistd.h>
+
+// PRINT related functions
+ssize_t	ft_putnbr_fd(long long n, int fd);
+ssize_t	ft_putpointer_fd(unsigned long ptr);
+
+#endif

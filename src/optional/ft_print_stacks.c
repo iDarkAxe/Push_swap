@@ -6,15 +6,16 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 11:28:37 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/28 23:11:32 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2024/12/30 17:56:13 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
+#include "ft_print.h"
 #include <stddef.h>
+#include <unistd.h>
+
 #include <stdlib.h>
-// DONT FORGET TO REMOVE
-#include <stdio.h>
 
 /**
  * @brief Print the stack
@@ -29,10 +30,16 @@ void	print_stack(t_stack *stack, size_t len)
 
 	number = 0;
 	index = stack;
-	while (index != NULL && number < len + 1)
+	while (index != NULL && number < len)
 	{
-		printf("stack[%zu] = %d\n", number++, index->value);
-		printf("adress is[%p]\n", (void *)index);
+		write(1, "stack[", 6);
+		ft_putnbr_fd((long long)number++, 1);
+		write(1, "] = ", 4);
+		ft_putnbr_fd(index->value, 1);
+		write(1, "\n", 1);
+		write(1, "adress is [", 11);
+		ft_putpointer_fd((unsigned long)index);
+		write(1, "]\n", 2);
 		index = index->next;
 	}
 }
@@ -46,17 +53,17 @@ void	print_stacks(t_data *data)
 {
 	if (data == NULL)
 	{
-		printf("data is NULL\n");
+		write(1, "data is NULL\n", 13);
 		return ;
 	}
-	printf("a :\n");
+	write(1, "a :\n", 4);
 	if (data->a == NULL)
-		printf("Stack A is NULL\n");
+		write(1, "Stack A is NULL\n", 16);
 	else
 		print_stack(data->a, data->a_len);
-	printf("b :\n");
+	write(1, "b :\n", 4);
 	if (data->b == NULL)
-		printf("Stack B is NULL\n");
+		write(1, "Stack B is NULL\n", 16);
 	else
 		print_stack(data->b, data->b_len);
 }
