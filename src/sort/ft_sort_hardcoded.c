@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:24:19 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/21 15:34:41 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/03 00:30:52 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ static void	ft_sort_four(t_data *data)
 	}
 	else if (a.fourth < a.first && a.fourth < a.second && a.fourth < a.third)
 		ft_rra(data, 1);
+	if (is_sorted(data) == 0)
+		return ;
 	ft_pb(data, 1);
 	ft_sort_three(data);
 	ft_pa(data, 1);

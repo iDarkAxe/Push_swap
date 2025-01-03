@@ -40,7 +40,7 @@ INC = \
 	ft_checker.h \
 	ft_sort.h \
 	get_next_line.h \
-	ft_printf.h
+	ft_print.h
 
 # Source files
 SRC = \
@@ -59,6 +59,7 @@ STACK = \
 
 SORT = \
 	ft_sort.c \
+	ft_cost.c \
 	ft_sort_hardcoded.c
 
 OPTIONAL = \
