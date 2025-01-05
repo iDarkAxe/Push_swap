@@ -6,15 +6,13 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:24:32 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/03 23:59:20 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/05 15:05:55 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-// int			sort_smart(t_data *data);
-// static void	sort_b_stack(t_data *data);
-void	sort_insertion(t_data *data);
+static void	rotate_accordingly(t_data *data, int value_found, size_t cost);
 
 /**
  * @brief Function used to call other sort algorithms
@@ -58,7 +56,7 @@ int	is_sorted(t_data *data)
 	return (0);
 }
 
-void	rotate_accordingly(t_data *data, int value_found, size_t cost)
+static void	rotate_accordingly(t_data *data, int value_found, size_t cost)
 {
 	if (cost < data->a_len / 2)
 		while (data->a->value != value_found)
@@ -92,45 +90,3 @@ void	sort_insertion(t_data *data)
 		ft_ra(data, 1);
 	}
 }
-
-/**
- * @brief Sort the stack with a smart algorithm
- * @todo : Implement a better algorithm
- * @param data structure that handles the stacks
- * @return int 0, OK, -1 error
- */
-// int	sort_smart(t_data *data)
-// {
-// 	while (is_sorted(data) != 0)
-// 	{
-// 		print_stacks(data);
-// 		if (data->a->value < data->a->next->value &&
-// 			data->a->value < data->a->next->next->value)
-// 			ft_pb(data, 1);
-// 		else if (data->a->value < data->a->next->next->value &&
-// 					data->a->next->value > data->a->next->next->value)
-// 		{
-// 			ft_rra(data, 1);
-// 			ft_pb(data, 1);
-// 		}
-// 		else if (data->a->next->value < data->a->value &&
-// 					data->a->next->value < data->a->next->next->value)
-// 		{
-// 			ft_sa(data, 1);
-// 			ft_pb(data, 1);
-// 		}
-// 		sort_b_stack(data);
-// 	}
-// 	return (0);
-// }
-
-// /**
-//  * @brief Sort the stack b
-//  *
-//  * @param data structure that handles the stacks
-//  */
-// static void	sort_b_stack(t_data *data)
-// {
-// 	while (data->b_len > 2 && data->b->value > data->b->next->value)
-// 		ft_rb(data, 1);
-// }

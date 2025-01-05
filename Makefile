@@ -1,12 +1,14 @@
 .PHONY : all clean fclean re bonus clean-lib clean-bin clean-obj debug debug-cc debug-print
 CC = gcc
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -Werror
 DEPENDANCIES = -MMD -MP
+NO_DIR = --no-print-directory
 NAME = push_swap
 
-DEBUG_CC = clang
-DEBUG_CFLAGS = -Weverything -Wno-padded -pedantic -O2 -Wwrite-strings -Wconversion -Wno-unsafe-buffer-usage -fsanitize=address -fsanitize=leak
-
+# Debugging flags
+CFLAGS_DEBUG = -Wall -Wextra -g3 -D DEBUG=1
+CC_DEBUG = clang
+CC_DEBUG_CFLAGS = -g3 -D DEBUG=1 -Weverything -Wno-padded -pedantic -O2 -Wwrite-strings -Wconversion -Wno-unsafe-buffer-usage -fsanitize=address -fsanitize=leak
 #############################################################################################
 #                                                                                           #
 #                                         DIRECTORIES                                       #
@@ -74,6 +76,10 @@ GNL = \
 	get_next_line.c \
 	get_next_line_utils.c
 
+LIBS = \
+	libgnl.a \
+	libpush_swap.a
+
 #############################################################################################
 #                                                                                           #
 #                                        MANIPULATION                                       #
@@ -114,7 +120,7 @@ all: $(NAME)
 
 # Create push_swap executable
 $(NAME): $(P_OBJ)main.o $(P_LIB)libpush_swap.a 
-	$(CC) $(CFLAGS) $(DEPENDANCIES) -I $(P_INC) -o $(NAME) $< -L$(P_LIB) -lpush_swap
+	$(CC) $(CFLAGS) $(DEPENDANCIES) $(DEBUG_STATE) -I $(P_INC) -o $(NAME) $< -L$(P_LIB) -lpush_swap
 
 # Create library used to create push_swap executable
 $(P_LIB)libpush_swap.a: $(OBJS)
@@ -124,14 +130,14 @@ $(P_LIB)libpush_swap.a: $(OBJS)
 # Custom rule to compilate all .c with there path
 $(P_OBJ)%.o: $(P_SRC)%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(DEPENDANCIES) -I $(P_INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEPENDANCIES) $(DEBUG_STATE) -I $(P_INC) -c $< -o $@
 
 bonus: $(NAME) checker
 
 # Create checker executable using push_swap library and gnl library
 checker: $(P_LIB)libgnl.a $(P_LIB)libpush_swap.a $(OBJS_CHECKER)
 	@mkdir -p $(P_LIB)
-	$(CC) $(CFLAGS) $(DEPENDANCIES) -I $(P_INC) -o $@ $(OBJS_CHECKER) -L$(P_LIB) -lpush_swap -lgnl
+	$(CC) $(CFLAGS) $(DEPENDANCIES) $(DEBUG_STATE) -I $(P_INC) -o $@ $(OBJS_CHECKER) -L$(P_LIB) -lpush_swap -lgnl
 
 # Create gnl library
 $(P_LIB)libgnl.a: $(OBJS_GNL)
@@ -155,16 +161,16 @@ clean-bin:
 	rm -f checker
 
 clean-obj:
-	@$(MAKE) --no-print-directory clean
+	@$(MAKE) $(NO_DIR) clean
 
 fclean:
-	@$(MAKE) --no-print-directory clean-obj
-	@$(MAKE) --no-print-directory clean-lib
-	@$(MAKE) --no-print-directory clean-bin
+	@$(MAKE) $(NO_DIR) clean-obj
+	@$(MAKE) $(NO_DIR) clean-lib
+	@$(MAKE) $(NO_DIR) clean-bin
 
 re:
-	@$(MAKE) --no-print-directory fclean
-	@$(MAKE) --no-print-directory all
+	@$(MAKE) $(NO_DIR) fclean
+	@$(MAKE) $(NO_DIR) all
 
 # Aliases
 clear: clean
@@ -177,22 +183,54 @@ flcear: fclean
 #                                           DEBUG                                           #
 #                                                                                           #
 #############################################################################################
-# Debugging
+# Debugging rules
 debug:
-	$(CC) $(CFLAGS) -g3 -D DEBUG=1 -I $(P_INC) $(SRCS) $(P_SRC)main.c -o $(NAME) 
+	@$(MAKE) $(NO_DIR) $(NAME) CFLAGS="$(CFLAGS_DEBUG)"
+
+debug-checker:
+	@$(MAKE) $(NO_DIR) checker CFLAGS="$(CFLAGS_DEBUG)"
 
 debug-cc:
-	$(DEBUG_CC) $(CFLAGS) -g3 $(DEBUG_CFLAGS) -D DEBUG=1 -I $(P_INC) -o $(NAME) $(SRCS) $(P_SRC)main.c
+	@$(MAKE) $(NO_DIR) $(NAME) CFLAGS="$(CC_DEBUG_CFLAGS)" CC="$(CC_DEBUG)"
+	@$(MAKE) $(NO_DIR) checker CFLAGS="$(CC_DEBUG_CFLAGS)" CC="$(CC_DEBUG)"
 
+# Debugging print
 debug-print:
-	@echo "$(Red)Project: \n\t$(Blue)$(NAME)$(Color_Off)"
-	@echo ""
-	@echo "$(Red)SRCS: \n\t$(Blue)$(SRCS)$(Color_Off)"
-	@echo ""
-	@echo "$(Red)OBJS: \n\t$(Blue)$(OBJS)$(Color_Off)"
-	@echo ""
-	@echo "$(Red)INCS: \n\t$(Blue)$(INCS)$(Color_Off)"
+	@$(MAKE) $(NO_DIR) debug-print-project
+	@$(MAKE) $(NO_DIR) debug-print-separator
+	@$(MAKE) $(NO_DIR) debug-print-checker
+	@$(MAKE) $(NO_DIR) debug-print-separator
+	@$(MAKE) $(NO_DIR) debug-print-gnl
 
+debug-print-separator:
+	@echo ""
+	@echo "$(On_Yellow)____________________$(Color_Off)"
+	@echo ""
+
+debug-print-project:
+	@echo "$(Red)Project:\n\t$(Blue)$(NAME)$(Color_Off)"
+	@echo ""
+	@echo "$(Red)SRCS:\n\t$(Blue)$(SRCS)$(Color_Off)"
+	@echo ""
+	@echo "$(Red)OBJS:\n\t$(Blue)$(OBJS)$(Color_Off)"
+	@echo ""
+	@echo "$(Red)INCS:\n\t$(Blue)$(INCS)$(Color_Off)"
+	@echo ""
+	@echo "$(Red)LIBS:\n\t$(Blue)$(LIBS)$(Color_Off)"
+
+debug-print-checker:
+	@echo "$(Red)Project:\n\t$(Blue)checker$(Color_Off)"
+	@echo ""
+	@echo "$(Red)SRCS:\n\t$(Blue)$(SRCS_CHECKER)$(Color_Off)"
+	@echo ""
+	@echo "$(Red)OBJS:\n\t$(Blue)$(OBJS_CHECKER)$(Color_Off)"
+
+debug-print-gnl:
+	@echo "$(Red)Project:\n\t$(Blue)Get_Next_Line$(Color_Off)"
+	@echo ""
+	@echo "$(Red)SRCS:\n\t$(Blue)$(GNL)$(Color_Off)"
+	@echo ""
+	@echo "$(Red)OBJS:\n\t$(Blue)$(OBJS_GNL)$(Color_Off)"
 #############################################################################################
 #                                                                                           #
 #                                         COSMETIC                                          #
