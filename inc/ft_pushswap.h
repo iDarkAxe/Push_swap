@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:08:30 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/05 15:05:44 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/07 10:51:01 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef char	t_bool;
 int		ft_pushswap(int argc, char **argv);
 
 // Error handling and stack initialization
-int	errors_handler(int error, t_data *data);
-int	init_data(t_data *data);
+int		errors_handler(int error, t_data *data);
+int		init_data(t_data *data);
 
 // Stack related functions
 t_stack	*ft_stacknew(int content);
@@ -70,9 +70,9 @@ int		ft_sort(t_data *data);
 int		ft_sort_hardcoded(t_data *data);
 
 // Cost related functions
-int	find_value(t_stack *stack, size_t len, t_bool max_selected);
-int	find_nearest(t_stack *stack, size_t len, int *value_found,
-		size_t *cost);
+int		find_value(t_stack *stack, size_t len, t_bool max_selected);
+int		find_nearest(t_stack *stack, size_t len, int *value_found,
+			size_t *cost);
 size_t	cost_calculator(t_stack *stack, size_t len, int value);
 
 // INSTRUCTIONS

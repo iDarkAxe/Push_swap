@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:24:32 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/05 15:05:55 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/07 11:30:55 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	rotate_accordingly(t_data *data, int value_found, size_t cost);
  */
 int	ft_sort(t_data *data)
 {
+	if (is_sorted(data) == 0)
+		return (0);
 	if (data->a_len < 5)
 		if (ft_sort_hardcoded(data) != 0)
 			return (-1);
