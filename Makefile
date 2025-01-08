@@ -3,6 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 DEPENDANCIES = -MMD -MP
 NO_DIR = --no-print-directory
+MAKE := $(MAKE) -j $(NO_DIR)
 NAME = push_swap
 
 # Debugging flags
@@ -116,7 +117,8 @@ INCS = $(addprefix $(P_INC), $(INC))
 #                                          RULES                                            #
 #                                                                                           #
 #############################################################################################
-all: $(NAME)
+all: 
+	@$(MAKE) $(NAME)
 
 # Create push_swap executable
 $(NAME): $(P_OBJ)main.o $(P_LIB)libpush_swap.a 
@@ -161,16 +163,16 @@ clean-bin:
 	rm -f checker
 
 clean-obj:
-	@$(MAKE) $(NO_DIR) clean
+	@$(MAKE) clean
 
 fclean:
-	@$(MAKE) $(NO_DIR) clean-obj
-	@$(MAKE) $(NO_DIR) clean-lib
-	@$(MAKE) $(NO_DIR) clean-bin
+	@$(MAKE) clean-obj
+	@$(MAKE) clean-lib
+	@$(MAKE) clean-bin
 
 re:
-	@$(MAKE) $(NO_DIR) fclean
-	@$(MAKE) $(NO_DIR) all
+	@$(MAKE) fclean
+	@$(MAKE) all
 
 # Aliases
 clear: clean
@@ -185,22 +187,22 @@ flcear: fclean
 #############################################################################################
 # Debugging rules
 debug:
-	@$(MAKE) $(NO_DIR) $(NAME) CFLAGS="$(CFLAGS_DEBUG)"
+	@$(MAKE) $(NAME) CFLAGS="$(CFLAGS_DEBUG)"
 
 debug-checker:
-	@$(MAKE) $(NO_DIR) checker CFLAGS="$(CFLAGS_DEBUG)"
+	@$(MAKE) checker CFLAGS="$(CFLAGS_DEBUG)"
 
 debug-cc:
-	@$(MAKE) $(NO_DIR) $(NAME) CFLAGS="$(CC_DEBUG_CFLAGS)" CC="$(CC_DEBUG)"
-	@$(MAKE) $(NO_DIR) checker CFLAGS="$(CC_DEBUG_CFLAGS)" CC="$(CC_DEBUG)"
+	@$(MAKE) $(NAME) CFLAGS="$(CC_DEBUG_CFLAGS)" CC="$(CC_DEBUG)"
+	@$(MAKE) checker CFLAGS="$(CC_DEBUG_CFLAGS)" CC="$(CC_DEBUG)"
 
 # Debugging print
 debug-print:
-	@$(MAKE) $(NO_DIR) debug-print-project
-	@$(MAKE) $(NO_DIR) debug-print-separator
-	@$(MAKE) $(NO_DIR) debug-print-checker
-	@$(MAKE) $(NO_DIR) debug-print-separator
-	@$(MAKE) $(NO_DIR) debug-print-gnl
+	@$(MAKE) debug-print-project
+	@$(MAKE) debug-print-separator
+	@$(MAKE) debug-print-checker
+	@$(MAKE) debug-print-separator
+	@$(MAKE) debug-print-gnl
 
 debug-print-separator:
 	@echo ""

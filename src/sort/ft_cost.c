@@ -6,12 +6,21 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:32:03 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/03 20:34:12 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/08 14:44:06 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
+/**
+ * @brief Find the value in the stack,
+ * the smallest (0) or the biggest (1)
+ * 
+ * @param stack stack to search
+ * @param len length of the stack
+ * @param max_selected 0 for smallest, 1 for biggest
+ * @return int value found
+ */
 int	find_value(t_stack *stack, size_t len, t_bool max_selected)
 {
 	size_t	i;
@@ -33,6 +42,15 @@ int	find_value(t_stack *stack, size_t len, t_bool max_selected)
 	return (value);
 }
 
+/**
+ * @brief Find the nearest value and the cost to reach it
+ * 
+ * @param stack stack to search
+ * @param len length of the stack
+ * @param value_found value found
+ * @param cost cost to reach the value
+ * @return int 0 for smallest, 1 for biggest
+ */
 int	find_nearest(t_stack *stack, size_t len, int *value_found,
 		size_t *cost)
 {
@@ -59,6 +77,14 @@ int	find_nearest(t_stack *stack, size_t len, int *value_found,
 	}
 }
 
+/**
+ * @brief Calculate the cost to reach a value
+ * 
+ * @param stack stack to search
+ * @param len length of the stack
+ * @param value value to found
+ * @return size_t number of steps to reach the value
+ */
 size_t	cost_calculator(t_stack *stack, size_t len, int value)
 {
 	size_t	cost;

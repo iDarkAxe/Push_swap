@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 12:58:40 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/07 16:03:26 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/08 14:36:12 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,6 @@ int	ft_stackclear(t_data *data)
 
 	if (data == NULL)
 		return (-1);
-	if (data->a != NULL && data->a->prev != NULL)
-		data->a->prev->next = NULL;
 	while (data->a != NULL && data->a_len > 0)
 	{
 		temp_a = data->a;
@@ -135,8 +133,6 @@ static int	ft_stackclear_b(t_data *data)
 
 	if (data->b == NULL)
 		return (-1);
-	if (data->b->prev != NULL)
-		data->b->prev->next = NULL;
 	while (data->b != NULL && data->b_len > 0)
 	{
 		temp_b = data->b;
