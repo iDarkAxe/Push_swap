@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:28 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/28 23:16:40 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/21 11:09:34 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ int	fill_stack(int argc, char **argv, t_data *data)
 		value = ft_atoi(argv[argc - 1]);
 		if (value != ft_atol(argv[argc - 1]))
 			return (-2);
-		if (data->a_len > 1 \
+		if (data->a_len >= 1 \
 			&& verify_duplicates(value, data->a, data->a_len) == -1)
 			return (-3);
 		temp = ft_stacknew(value);
