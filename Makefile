@@ -1,6 +1,6 @@
 .PHONY : all clean fclean re bonus clean-lib clean-bin clean-obj debug debug-cc debug-print
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -Ofast
 DEPENDANCIES = -MMD -MP
 NO_DIR = --no-print-directory
 MAKE := $(MAKE) -j $(NO_DIR)
@@ -62,6 +62,8 @@ STACK = \
 
 SORT = \
 	ft_sort.c \
+	ft_sort_radix.c \
+	ft_sort_insertion.c \
 	ft_cost.c \
 	ft_sort_hardcoded.c
 
