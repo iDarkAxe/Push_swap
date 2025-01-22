@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 23:00:06 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/03 13:27:52 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/22 13:59:47 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_pushswap(int argc, char **argv)
 
 /**
  * @brief Handles multiple errors types
- * 
+ *
  * @param error Identifier of error
  * @param data structure that handles the stacks
  * @return int 0 OK, -1 is error
@@ -50,23 +50,14 @@ int	errors_handler(int error, t_data *data)
 {
 	if (DEBUG == 1)
 		print_stacks(data);
-	if (error == -1)
-		write(2, "Error\n", 6);
-	else if (error == -2)
-		write(2, "Error remplissage\n", 18);
-	else if (error == -3)
-		write(2, "Error, ce n'est pas trié\n", 27);
-	else if (error == -4 || error == -5 || error == -6)
-		write(2, "KO\n", 3);
-	else
-		write(2, "Undefined error\n", 16);
+	write(2, "Error\n", 6);
 	ft_stackclear(data);
 	return (error);
 }
 
 /**
  * @brief Initialize Data to avoid using calloc
- * 
+ *
  * @param data structure that handles the stacks
  * @return int 0 OK, -1 is error
  */

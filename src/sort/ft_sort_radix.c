@@ -6,13 +6,13 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:33:07 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/22 10:49:41 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/22 11:45:26 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-static int	count_max_bitsz(t_stack **stack, size_t len);
+static int	count_max_bits(t_stack **stack, size_t len);
 
 void	sort_radix(t_data *data)
 {

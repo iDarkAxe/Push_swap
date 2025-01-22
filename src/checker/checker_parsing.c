@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 22:55:42 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/28 23:00:34 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/22 13:57:05 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		parse_and_execute_rotate(t_data *data, char *str);
 
 /**
  * @brief Parse and executes associated functions
- * 
+ *
  * @param data structure that handles the stacks
  */
 void	parse_and_execute(t_data *data)
@@ -31,13 +31,13 @@ void	parse_and_execute(t_data *data)
 	{
 		if (ft_strlen(str) < 3 || (*str != 'p' && *str != 's' && *str != 'r'))
 			return ;
-		if (*str == 'p' && *(str + 1) == 'a')
+		if (*str == 'p' && *(str + 1) == 'a' && *(str + 2) == '\n')
 			ft_pa(data, PRINT_NAME);
-		else if (*str == 'p' && *(str + 1) == 'b')
+		else if (*str == 'p' && *(str + 1) == 'b' && *(str + 2) == '\n')
 			ft_pb(data, PRINT_NAME);
-		else if (*str == 's' && *(str + 1) == 'a')
+		else if (*str == 's' && *(str + 1) == 'a' && *(str + 2) == '\n')
 			ft_sa(data, PRINT_NAME);
-		else if (*str == 's' && *(str + 1) == 'b')
+		else if (*str == 's' && *(str + 1) == 'b' && *(str + 2) == '\n')
 			ft_sb(data, PRINT_NAME);
 		else
 			parse_and_execute_rotate(data, str);
@@ -49,23 +49,27 @@ void	parse_and_execute(t_data *data)
 
 /**
  * @brief Second part of P&E that handles rotates and errors
- * 
+ *
  * @param data structure that handles the stacks
  * @param str string to search chars
  */
 static void	parse_and_execute_rotate(t_data *data, char *str)
 {
-	if (*str == 'r' && *(str + 1) == 'a')
+	if (*str == 'r' && *(str + 1) == 'a' && *(str + 2) == '\n')
 		ft_ra(data, PRINT_NAME);
-	else if (*str == 'r' && *(str + 1) == 'b')
+	else if (*str == 'r' && *(str + 1) == 'b' && *(str + 2) == '\n')
 		ft_rb(data, PRINT_NAME);
-	else if (*str == 'r' && *(str + 1) == 'r' && *(str + 2) == '\n')
+	else if (*str == 'r' && *(str + 1) == 'r' && *(str + 2) == '\n' && *(str
+			+ 3) == '\n')
 		ft_rr(data, PRINT_NAME);
-	else if (*str == 'r' && *(str + 1) == 'r' && *(str + 2) == 'r')
+	else if (*str == 'r' && *(str + 1) == 'r' && *(str + 2) == 'r' && *(str
+			+ 3) == '\n')
 		ft_rrr(data, PRINT_NAME);
-	else if (*str == 'r' && *(str + 1) == 'r' && *(str + 2) == 'a')
+	else if (*str == 'r' && *(str + 1) == 'r' && *(str + 2) == 'a' && *(str
+			+ 3) == '\n')
 		ft_rra(data, PRINT_NAME);
-	else if (*str == 'r' && *(str + 1) == 'r' && *(str + 2) == 'b')
+	else if (*str == 'r' && *(str + 1) == 'r' && *(str + 2) == 'b' && *(str
+			+ 3) == '\n')
 		ft_rrb(data, PRINT_NAME);
 	else
 		write(2, "Instruction Not recognized\n", 27);
@@ -73,7 +77,7 @@ static void	parse_and_execute_rotate(t_data *data, char *str)
 
 /**
  * @brief Simple strlen
- * 
+ *
  * @param str string to count char from
  * @return size_t number of character found
  */

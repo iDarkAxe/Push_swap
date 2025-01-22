@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:28 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/21 11:09:34 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/22 12:51:52 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,11 @@ static int	fill_stack_single_string(char *str, t_data *data)
 			str++;
 		while (*str == ' ')
 			str++;
+		if (data->a_len >= 1 \
+			&& verify_duplicates(value, data->a, data->a_len) == -1)
+			return (-3);
 		temp = ft_stacknew(value);
-		if (temp == NULL \
-			|| verify_duplicates(value, data->a, data->a_len) == -1)
+		if (temp == NULL)
 			return (-4);
 		data->a_len++;
 		ft_stackadd_back(&(data->a), temp, data->a_len);
