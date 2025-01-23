@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 12:58:40 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/08 14:36:12 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/23 13:05:31 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_stack	*ft_stacknew(int content)
 	element->value = content;
 	element->prev = NULL;
 	element->next = NULL;
+	element->index = 0;
+	element->checked = 0;
 	return (element);
 }
 

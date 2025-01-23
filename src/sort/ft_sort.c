@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:24:32 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/21 18:01:23 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/23 16:57:39 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int	ft_sort(t_data *data)
 	if (data->a_len < 5)
 		if (ft_sort_hardcoded(data) != 0)
 			return (-1);
-	if (data->a_len >= 5)
+	if (data->a_len >= 5 && data->a_len <= 10)
+		sort_insertion(data);
+	if (data->a_len > 10)
 		sort_radix(data);
 	return (is_sorted(data));
 }

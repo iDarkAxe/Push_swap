@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:08:30 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/22 10:35:52 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/23 17:00:23 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * @file ft_pushswap.h
  * @brief Header file for the pushswap project.
  *
-*/
+ */
 
 # ifndef DEBUG
 #  define DEBUG 0
@@ -33,17 +33,24 @@
  */
 
 /**
+ * @brief Boolean type
+ */
+typedef char		t_bool;
+
+/**
  * @brief Stack structure, doubly linked list
  */
 typedef struct s_stack
 {
 	struct s_stack	*prev;
 	struct s_stack	*next;
+	size_t			index;
 	int				value;
+	t_bool			checked;
 }					t_stack;
 
 /**
- * @brief Data structure, contains the two stacks and there lengths
+ * @brief Data structure, contains the two stacks and their lengths
  */
 typedef struct s_data
 {
@@ -52,11 +59,6 @@ typedef struct s_data
 	t_stack			*a;
 	t_stack			*b;
 }					t_data;
-
-/**
- * @brief Boolean type for instructions
- */
-typedef char		t_bool;
 /** @} */
 
 /**
@@ -116,6 +118,7 @@ int					find_value(t_stack *stack, size_t len, t_bool max_selected);
 int					find_nearest(t_stack *stack, size_t len, int *value_found,
 						size_t *cost);
 size_t				cost_calculator(t_stack *stack, size_t len, int value);
+void				build_index(t_data *data);
 /** @} */
 
 /**
@@ -141,12 +144,13 @@ void				ft_rrr(t_data *data, t_bool print_name);
 
 /**
  * @defgroup Optional Optional functions for debugging
- * @brief Optional functions used to understand 
+ * @brief Optional functions used to understand
  * what is happening when something goes wrong.
  * @{
  */
 
 void				print_stack(t_stack *stack, size_t len);
+void				print_index(t_stack *stack, size_t len);
 
 // Adds OF OPTIONAL
 void				print_stacks(t_data *data);

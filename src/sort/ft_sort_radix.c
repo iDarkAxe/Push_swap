@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:33:07 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/22 11:45:26 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/23 16:22:26 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ void	sort_radix(t_data *data)
 
 	i = 0;
 	size = data->a_len;
+	build_index(data);
 	max_bits = count_max_bits(&data->a, data->a_len);
 	while (i < max_bits)
 	{
 		j = 0;
 		while (j++ < size)
 		{
-			if (((data->a->value >> i) & 1) == 1)
+			if (((data->a->index >> i) & 1) == 1)
 				ft_ra(data, 1);
 			else
 				ft_pb(data, 1);
@@ -37,6 +38,8 @@ void	sort_radix(t_data *data)
 		while (data->b_len > 0)
 			ft_pa(data, 1);
 		i++;
+		if (is_sorted(data) == 0)
+			break ;
 	}
 }
 

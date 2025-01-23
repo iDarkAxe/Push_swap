@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_only.c                                        :+:      :+:    :+:   */
+/*   ft_print_stacks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 11:28:37 by ppontet           #+#    #+#             */
-/*   Updated: 2024/12/30 17:56:13 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/23 16:59:57 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,30 @@ int	fill_stacks(int argc, char **argv, t_data *data)
 		argc--;
 	}
 	return (0);
+}
+
+/**
+ * @brief Print the stack
+ * 
+ * @param stack stack to print
+ * @param len number of elements to print
+ */
+void	print_index(t_stack *stack, size_t len)
+{
+	t_stack	*index;
+	size_t	number;
+
+	number = 0;
+	index = stack;
+	while (index != NULL && number < len)
+	{
+		write(1, "stack[", 6);
+		ft_putnbr_fd((long long)number++, 1);
+		write(1, "] = ", 4);
+		ft_putnbr_fd(index->value, 1);
+		write(1, "\n", 1);
+		ft_putnbr_fd((unsigned long)index->index, 1);
+		write(1, " is index\n", 11);
+		index = index->next;
+	}
 }

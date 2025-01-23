@@ -63,6 +63,7 @@ STACK = \
 SORT = \
 	ft_sort.c \
 	ft_sort_radix.c \
+	ft_index.c \
 	ft_sort_insertion.c \
 	ft_cost.c \
 	ft_sort_hardcoded.c
