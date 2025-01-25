@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:24:32 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/23 16:57:39 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/25 15:32:51 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ int	ft_sort(t_data *data)
 	if (is_sorted(data) == 0)
 		return (0);
 	if (data->a_len < 5)
-		if (ft_sort_hardcoded(data) != 0)
-			return (-1);
+		ft_sort_hardcoded(data);
 	if (data->a_len >= 5 && data->a_len <= 10)
-		sort_insertion(data);
+		ft_sort_small(data);
 	if (data->a_len > 10)
 		sort_radix(data);
 	return (is_sorted(data));
@@ -56,4 +55,20 @@ int	is_sorted(t_data *data)
 		len++;
 	}
 	return (0);
+}
+
+void	ft_sort_small(t_data *data)
+{
+	int	value;
+
+	while (data->a_len > 4)
+	{
+		value = find_value(data->a, data->a_len, 0);
+		rotate_accordingly(data, value, cost_calculator(data->a, data->a_len,
+				value));
+		ft_pb(data, 1);
+	}
+	ft_sort_four(data);
+	while (data->b_len > 0)
+		ft_pa(data, 1);
 }

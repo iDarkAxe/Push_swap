@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:32:03 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/08 14:44:06 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/25 13:40:03 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,14 @@ size_t	cost_calculator(t_stack *stack, size_t len, int value)
 		cost++;
 	}
 	return (cost);
+}
+
+void	rotate_accordingly(t_data *data, int value_found, size_t cost)
+{
+	if (cost < data->a_len / 2)
+		while (data->a->value != value_found)
+			ft_ra(data, 1);
+	else
+		while (data->a->value != value_found)
+			ft_rra(data, 1);
 }

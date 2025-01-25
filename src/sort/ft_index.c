@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:14:44 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/23 16:59:38 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/25 15:36:05 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@
  * 
  * @param stack stack to search
  * @param len length of the stack
- * @param max_selected 0 for smallest, 1 for biggest
- * @return int value found
+ * @return size_t value found
  */
-static int	find_value_index(t_stack *stack, size_t len)
+static size_t	find_value_index(t_stack *stack, size_t len)
 {
 	size_t	count;
 	t_stack	*temp;

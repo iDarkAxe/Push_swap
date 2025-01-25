@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:08:30 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/23 17:00:23 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/25 16:13:43 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,12 @@ long				ft_atol(const char *nptr);
 // Sort related functions
 int					is_sorted(t_data *data);
 int					ft_sort(t_data *data);
-int					ft_sort_hardcoded(t_data *data);
+void				ft_sort_hardcoded(t_data *data);
 
 // Sort Algorithms
+void				ft_sort_three(t_data *data);
+void				ft_sort_four(t_data *data);
+void				ft_sort_small(t_data *data);
 void				sort_insertion(t_data *data);
 void				sort_radix(t_data *data);
 
@@ -118,6 +121,8 @@ int					find_value(t_stack *stack, size_t len, t_bool max_selected);
 int					find_nearest(t_stack *stack, size_t len, int *value_found,
 						size_t *cost);
 size_t				cost_calculator(t_stack *stack, size_t len, int value);
+void				rotate_accordingly(t_data *data, int value_found,
+						size_t cost);
 void				build_index(t_data *data);
 /** @} */
 

@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 11:28:37 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/23 16:59:57 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/25 15:37:27 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	print_index(t_stack *stack, size_t len)
 		write(1, "] = ", 4);
 		ft_putnbr_fd(index->value, 1);
 		write(1, "\n", 1);
-		ft_putnbr_fd((unsigned long)index->index, 1);
+		ft_putnbr_fd((long long)index->index, 1);
 		write(1, " is index\n", 11);
 		index = index->next;
 	}

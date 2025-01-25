@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 13:49:53 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/23 16:59:51 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/25 15:37:12 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
  */
 void	ft_sa(t_data *data, t_bool print_name)
 {
-	int	temp_value;
-	int	temp_index;
-	int	temp_checked;
+	int		temp_value;
+	size_t	temp_index;
+	t_bool	temp_checked;
 
 	if (data->a == NULL || data->a->next == NULL)
 		return ;
@@ -51,9 +51,9 @@ void	ft_sa(t_data *data, t_bool print_name)
  */
 void	ft_sb(t_data *data, t_bool print_name)
 {
-	int	temp_value;
-	int	temp_index;
-	int	temp_checked;
+	int		temp_value;
+	size_t	temp_index;
+	t_bool	temp_checked;
 
 	if (data->b == NULL || data->b->next == NULL)
 		return ;
