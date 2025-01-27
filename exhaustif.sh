@@ -86,13 +86,10 @@ if [ -n "$1" ] && [ "$1" -gt 4 ]; then
 		exit 1
 	fi;
 	if [ -z "$2" ]; then
-		echo "Veuillez saisir une taille"
+		echo "Veuillez saisir un objectif"
 		read -r taille
-		set -- "$taille"
-	fi;
-	if ! [[ "$taille" =~ ^-?[0-9]+$ ]];  then
-		echo "$taille n'est un nombre."
+		set -- $taille
+		./complexity $1 1000 $taille ./checker
 		exit 1
-	fi
-	./complexity $1 1000 $taille ./checker
+	fi;
 fi;

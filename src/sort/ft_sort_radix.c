@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:33:07 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/26 18:05:40 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/27 16:36:09 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	count_max_bits(t_stack **stack, size_t len)
 {
 	t_stack	*head;
 	size_t	count;
-	size_t		max;
+	size_t	max;
 	int		max_bits;
 
 	head = *stack;
