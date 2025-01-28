@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 11:28:37 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/25 15:37:27 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/28 14:33:33 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * @param stack stack to print
  * @param len number of elements to print
  */
-void	print_stack(t_stack *stack, size_t len)
+void	print_stack(t_stack *stack, size_t len, int fd)
 {
 	t_stack	*index;
 	size_t	number;
@@ -32,14 +32,14 @@ void	print_stack(t_stack *stack, size_t len)
 	index = stack;
 	while (index != NULL && number < len)
 	{
-		write(1, "stack[", 6);
-		ft_putnbr_fd((long long)number++, 1);
-		write(1, "] = ", 4);
-		ft_putnbr_fd(index->value, 1);
-		write(1, "\n", 1);
-		write(1, "adress is [", 11);
+		write(fd, "stack[", 6);
+		ft_putnbr_fd((long long)number++, fd);
+		write(fd, "] = ", 4);
+		ft_putnbr_fd(index->value, fd);
+		write(fd, "\n", 1);
+		write(fd, "adress is [", 11);
 		ft_putpointer_fd((unsigned long)index);
-		write(1, "]\n", 2);
+		write(fd, "]\n", 2);
 		index = index->next;
 	}
 }
@@ -48,24 +48,25 @@ void	print_stack(t_stack *stack, size_t len)
  * @brief Print the stacks
  * 
  * @param data structure that handles the stacks
+ * @param fd file descriptor
  */
-void	print_stacks(t_data *data)
+void	print_stacks(t_data *data, int fd)
 {
 	if (data == NULL)
 	{
-		write(1, "data is NULL\n", 13);
+		write(fd, "data is NULL\n", 13);
 		return ;
 	}
-	write(1, "a :\n", 4);
+	write(fd, "a :\n", 4);
 	if (data->a == NULL)
-		write(1, "Stack A is NULL\n", 16);
+		write(fd, "Stack A is NULL\n", 16);
 	else
-		print_stack(data->a, data->a_len);
-	write(1, "b :\n", 4);
+		print_stack(data->a, data->a_len, fd);
+	write(fd, "b :\n", 4);
 	if (data->b == NULL)
-		write(1, "Stack B is NULL\n", 16);
+		write(fd, "Stack B is NULL\n", 16);
 	else
-		print_stack(data->b, data->b_len);
+		print_stack(data->b, data->b_len, fd);
 }
 
 /**
@@ -109,8 +110,9 @@ int	fill_stacks(int argc, char **argv, t_data *data)
  * 
  * @param stack stack to print
  * @param len number of elements to print
+ * @param fd file descriptor
  */
-void	print_index(t_stack *stack, size_t len)
+void	print_index(t_stack *stack, size_t len, int fd)
 {
 	t_stack	*index;
 	size_t	number;
@@ -120,12 +122,12 @@ void	print_index(t_stack *stack, size_t len)
 	while (index != NULL && number < len)
 	{
 		write(1, "stack[", 6);
-		ft_putnbr_fd((long long)number++, 1);
-		write(1, "] = ", 4);
-		ft_putnbr_fd(index->value, 1);
-		write(1, "\n", 1);
-		ft_putnbr_fd((long long)index->index, 1);
-		write(1, " is index\n", 11);
+		ft_putnbr_fd((long long)number++, fd);
+		write(fd, "] = ", 4);
+		ft_putnbr_fd(index->value, fd);
+		write(fd, "\n", 1);
+		ft_putnbr_fd((long long)index->index, fd);
+		write(fd, " is index\n", 11);
 		index = index->next;
 	}
 }

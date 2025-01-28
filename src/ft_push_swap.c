@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 23:00:06 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/22 13:59:47 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/28 14:33:14 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_pushswap(int argc, char **argv)
 	data = malloc(sizeof(t_data));
 	if (init_data(data) != 0)
 		return (errors_handler(-1, data));
+	if (verify_arguments(argc, argv) != 0)
+		return (errors_handler(-4, data));
 	if (fill_stack(argc, argv, data) != 0)
 		return (errors_handler(-2, data));
 	if (ft_sort(data) != 0)
@@ -49,7 +51,7 @@ int	ft_pushswap(int argc, char **argv)
 int	errors_handler(int error, t_data *data)
 {
 	if (DEBUG == 1)
-		print_stacks(data);
+		print_stacks(data, 2);
 	write(2, "Error\n", 6);
 	ft_stackclear(data);
 	return (error);

@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:08:30 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/25 16:13:43 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/28 14:33:08 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int					ft_stackclear(t_data *data);
 int					fill_stack(int argc, char **argv, t_data *data);
 
 // Verify related functions
+int					verify_arguments(int argc, char **argv);
 int					verify_duplicates(int value, t_stack *data,
 						size_t stack_len);
 long				ft_atol(const char *nptr);
@@ -154,11 +155,11 @@ void				ft_rrr(t_data *data, t_bool print_name);
  * @{
  */
 
-void				print_stack(t_stack *stack, size_t len);
-void				print_index(t_stack *stack, size_t len);
+void				print_stack(t_stack *stack, size_t len, int fd);
+void				print_index(t_stack *stack, size_t len, int fd);
 
 // Adds OF OPTIONAL
-void				print_stacks(t_data *data);
+void				print_stacks(t_data *data, int fd);
 int					fill_stacks(int argc, char **argv, t_data *data);
 /** @} */
 

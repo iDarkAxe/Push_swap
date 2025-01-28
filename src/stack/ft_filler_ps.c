@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:28 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/22 12:51:52 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/28 13:44:02 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,47 +45,6 @@ static int	ft_atoi(const char *nptr)
 	if (minus_sign == -1)
 		return ((int)-number);
 	return ((int)number);
-}
-
-/**
- * @brief Verify if a single character is unauthorized
- *
- * @param letter character tested
- * @return char letter if authorized, 0 if not
- */
-static char	verify_char(char letter)
-{
-	if ((letter >= '0' && letter <= '9') || letter == ' ' || letter == '-'
-		|| letter == '+')
-		return (letter);
-	return (0);
-}
-
-/**
- * @brief Verify is there are unauthorized characters in arguments
- *
- * @param argc number of args
- * @param argv array of strings
- * @return int 0 if OK, -1 is error
- */
-static int	verify_arguments(int argc, char **argv)
-{
-	size_t	index;
-	int		arg_index;
-
-	arg_index = 1;
-	while (arg_index < argc)
-	{
-		index = 0;
-		while (argv[arg_index][index] != '\0')
-		{
-			if (verify_char(argv[arg_index][index]) == 0)
-				return (-1);
-			index++;
-		}
-		arg_index++;
-	}
-	return (0);
 }
 
 /**
@@ -140,8 +99,6 @@ int	fill_stack(int argc, char **argv, t_data *data)
 	t_stack	*temp;
 	int		value;
 
-	if (verify_arguments(argc, argv) == -1)
-		return (-1);
 	if (argc == 2)
 		return (fill_stack_single_string(argv[1], data));
 	while (argc > 1)
