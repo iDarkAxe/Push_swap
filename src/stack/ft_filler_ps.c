@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:06:28 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/28 13:44:02 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/30 15:55:17 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ static int	fill_stack_single_string(char *str, t_data *data)
 /**
  * @brief Parse the given args,
  * creates nodes and links them to make a stack
- * Uses _single_string if number of args is 2
+ * Uses _single_string for each argument so that it can handle multiple args
+ * "151 1 2 3 4 5" 6 7 8 "9 10" 95 are valid arguments (args + strings).
  *
  * @param argc number of args
  * @param argv array of strings
@@ -96,25 +97,16 @@ static int	fill_stack_single_string(char *str, t_data *data)
  */
 int	fill_stack(int argc, char **argv, t_data *data)
 {
-	t_stack	*temp;
-	int		value;
+	int	argc_temp;
+	int	ret;
 
-	if (argc == 2)
-		return (fill_stack_single_string(argv[1], data));
-	while (argc > 1)
+	argc_temp = 1;
+	while (argc_temp < argc)
 	{
-		value = ft_atoi(argv[argc - 1]);
-		if (value != ft_atol(argv[argc - 1]))
-			return (-2);
-		if (data->a_len >= 1 \
-			&& verify_duplicates(value, data->a, data->a_len) == -1)
-			return (-3);
-		temp = ft_stacknew(value);
-		if (temp == NULL)
-			return (-4);
-		data->a_len++;
-		ft_stackadd_front(&(data->a), temp);
-		argc--;
+		ret = fill_stack_single_string(argv[argc_temp], data);
+		if (ret != 0)
+			return (ret);
+		argc_temp++;
 	}
 	return (0);
 }
