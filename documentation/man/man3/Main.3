@@ -1,0 +1,95 @@
+.TH "Main" 3 "Thu Jan 30 2025 17:36:41" "Push_swap" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Main \- Main functions
+.PP
+ \- Core functionnality of the project\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBerrors_handler\fP (int error, \fBt_data\fP *data)"
+.br
+.RI "Handles multiple errors types\&. "
+.ti -1c
+.RI "int \fBft_pushswap\fP (int argc, char **argv)"
+.br
+.RI "Main function /!\\ require arguments to work\&. "
+.ti -1c
+.RI "int \fBinit_data\fP (\fBt_data\fP *data)"
+.br
+.RI "Initialize Data to avoid using calloc\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Core functionnality of the project\&. 
+
+
+.SH "Function Documentation"
+.PP 
+.SS "int errors_handler (int error, \fBt_data\fP * data)"
+
+.PP
+Handles multiple errors types\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIerror\fP Identifier of error 
+.br
+\fIdata\fP structure that handles the stacks 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 0 OK, -1 is error 
+.RE
+.PP
+
+.PP
+Definition at line \fB51\fP of file \fBft_push_swap\&.c\fP\&.
+.SS "int ft_pushswap (int argc, char ** argv)"
+
+.PP
+Main function /!\\ require arguments to work\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIargc\fP number of argument 
+.br
+\fIargv\fP array of string 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 0 OK, -1 is error 
+.RE
+.PP
+
+.PP
+Definition at line \fB25\fP of file \fBft_push_swap\&.c\fP\&.
+.SS "int init_data (\fBt_data\fP * data)"
+
+.PP
+Initialize Data to avoid using calloc\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 0 OK, -1 is error 
+.RE
+.PP
+
+.PP
+Definition at line \fB66\fP of file \fBft_push_swap\&.c\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Push_swap from the source code\&.

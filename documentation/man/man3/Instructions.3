@@ -1,0 +1,234 @@
+.TH "Instructions" 3 "Thu Jan 30 2025 17:36:41" "Push_swap" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Instructions \- Instructions
+.PP
+ \- All the different instructions authorized\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBft_pa\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Push a : Takes the first element of b and put it on top of stack a\&. Do nothing if b doesn't exit\&. "
+.ti -1c
+.RI "void \fBft_pb\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Push b : Takes the first element of a and put it on top of stack b\&. Do nothing if b doesn't exit\&. "
+.ti -1c
+.RI "void \fBft_ra\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Rotate a : Shifts all the stack up and the first becomes last\&. "
+.ti -1c
+.RI "void \fBft_rb\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Rotate b : Shifts all the stack up and the first becomes last\&. "
+.ti -1c
+.RI "void \fBft_rr\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Rotate a and b : Executes Rotate a and Rotate b\&. "
+.ti -1c
+.RI "void \fBft_rra\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Reverse Rotate a : Shifts all the stack down and the last becomes first\&. "
+.ti -1c
+.RI "void \fBft_rrb\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Reverse Rotate b : Shifts all the stack down and the last becomes first\&. "
+.ti -1c
+.RI "void \fBft_rrr\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Reverse Rotate a and b : Executes Reverse Rotate a and Reverse Rotate b\&. "
+.ti -1c
+.RI "void \fBft_sa\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Swap a : Swaps the first and second element in a Do nothing if first or second doesn't exist\&. "
+.ti -1c
+.RI "void \fBft_sb\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Swap b : Swaps the first and second element in b Do nothing if first or second doesn't exist\&. "
+.ti -1c
+.RI "void \fBft_ss\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Swap S : Executes Swap A and B\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+All the different instructions authorized\&. 
+
+
+.SH "Function Documentation"
+.PP 
+.SS "void ft_pa (\fBt_data\fP * data, \fBt_bool\fP print_name)"
+
+.PP
+Push a : Takes the first element of b and put it on top of stack a\&. Do nothing if b doesn't exit\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.br
+\fIprint_name\fP set to 1 to print it's name 
+.RE
+.PP
+
+.PP
+Definition at line \fB23\fP of file \fBft_push_ps\&.c\fP\&.
+.SS "void ft_pb (\fBt_data\fP * data, \fBt_bool\fP print_name)"
+
+.PP
+Push b : Takes the first element of a and put it on top of stack b\&. Do nothing if b doesn't exit\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.br
+\fIprint_name\fP set to 1 to print it's name 
+.RE
+.PP
+
+.PP
+Definition at line \fB52\fP of file \fBft_push_ps\&.c\fP\&.
+.SS "void ft_ra (\fBt_data\fP * data, \fBt_bool\fP print_name)"
+
+.PP
+Rotate a : Shifts all the stack up and the first becomes last\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.br
+\fIprint_name\fP set to 1 to print it's name 
+.RE
+.PP
+
+.PP
+Definition at line \fB23\fP of file \fBft_rotate_ps\&.c\fP\&.
+.SS "void ft_rb (\fBt_data\fP * data, \fBt_bool\fP print_name)"
+
+.PP
+Rotate b : Shifts all the stack up and the first becomes last\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.br
+\fIprint_name\fP set to 1 to print it's name 
+.RE
+.PP
+
+.PP
+Definition at line \fB38\fP of file \fBft_rotate_ps\&.c\fP\&.
+.SS "void ft_rr (\fBt_data\fP * data, \fBt_bool\fP print_name)"
+
+.PP
+Rotate a and b : Executes Rotate a and Rotate b\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.br
+\fIprint_name\fP set to 1 to print it's name 
+.RE
+.PP
+
+.PP
+Definition at line \fB52\fP of file \fBft_rotate_ps\&.c\fP\&.
+.SS "void ft_rra (\fBt_data\fP * data, \fBt_bool\fP print_name)"
+
+.PP
+Reverse Rotate a : Shifts all the stack down and the last becomes first\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.br
+\fIprint_name\fP set to 1 to print it's name 
+.RE
+.PP
+
+.PP
+Definition at line \fB23\fP of file \fBft_rrotate_ps\&.c\fP\&.
+.SS "void ft_rrb (\fBt_data\fP * data, \fBt_bool\fP print_name)"
+
+.PP
+Reverse Rotate b : Shifts all the stack down and the last becomes first\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.br
+\fIprint_name\fP set to 1 to print it's name 
+.RE
+.PP
+
+.PP
+Definition at line \fB38\fP of file \fBft_rrotate_ps\&.c\fP\&.
+.SS "void ft_rrr (\fBt_data\fP * data, \fBt_bool\fP print_name)"
+
+.PP
+Reverse Rotate a and b : Executes Reverse Rotate a and Reverse Rotate b\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.br
+\fIprint_name\fP set to 1 to print it's name 
+.RE
+.PP
+
+.PP
+Definition at line \fB52\fP of file \fBft_rrotate_ps\&.c\fP\&.
+.SS "void ft_sa (\fBt_data\fP * data, \fBt_bool\fP print_name)"
+
+.PP
+Swap a : Swaps the first and second element in a Do nothing if first or second doesn't exist\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.br
+\fIprint_name\fP set to 1 to print it's name 
+.RE
+.PP
+
+.PP
+Definition at line \fB23\fP of file \fBft_swap_ps\&.c\fP\&.
+.SS "void ft_sb (\fBt_data\fP * data, \fBt_bool\fP print_name)"
+
+.PP
+Swap b : Swaps the first and second element in b Do nothing if first or second doesn't exist\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.br
+\fIprint_name\fP set to 1 to print it's name 
+.RE
+.PP
+
+.PP
+Definition at line \fB52\fP of file \fBft_swap_ps\&.c\fP\&.
+.SS "void ft_ss (\fBt_data\fP * data, \fBt_bool\fP print_name)"
+
+.PP
+Swap S : Executes Swap A and B\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.br
+\fIprint_name\fP set to 1 to print it's name 
+.RE
+.PP
+
+.PP
+Definition at line \fB80\fP of file \fBft_swap_ps\&.c\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Push_swap from the source code\&.

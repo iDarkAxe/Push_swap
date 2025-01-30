@@ -1,0 +1,222 @@
+.TH "/home/ppontet/push_swap/inc/ft_pushswap.h" 3 "Thu Jan 30 2025 17:36:41" "Push_swap" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/ppontet/push_swap/inc/ft_pushswap.h \- Header file for the pushswap project\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <stddef\&.h>\fP
+.br
+\fR#include <unistd\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBs_data\fP"
+.br
+.RI "Data structure, contains the two stacks and their lengths\&. "
+.ti -1c
+.RI "struct \fBs_stack\fP"
+.br
+.RI "Stack structure, doubly linked list\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBDEBUG\fP   0"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef char \fBt_bool\fP"
+.br
+.RI "Boolean type\&. "
+.ti -1c
+.RI "typedef struct \fBs_data\fP \fBt_data\fP"
+.br
+.RI "Data structure, contains the two stacks and their lengths\&. "
+.ti -1c
+.RI "typedef struct \fBs_stack\fP \fBt_stack\fP"
+.br
+.RI "Stack structure, doubly linked list\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBbuild_index\fP (\fBt_data\fP *data)"
+.br
+.ti -1c
+.RI "size_t \fBcost_calculator\fP (\fBt_stack\fP *stack, size_t len, int value)"
+.br
+.RI "Calculate the cost to reach a value\&. "
+.ti -1c
+.RI "int \fBerrors_handler\fP (int error, \fBt_data\fP *data)"
+.br
+.RI "Handles multiple errors types\&. "
+.ti -1c
+.RI "int \fBfill_stack\fP (int argc, char **argv, \fBt_data\fP *data)"
+.br
+.RI "Parse the given args, creates nodes and links them to make a stack Uses _single_string for each argument so that it can handle multiple args "151 1 2 3 4 5" 6 7 8 "9 10" 95 are valid arguments (args + strings)\&. "
+.ti -1c
+.RI "int \fBfill_stacks\fP (int argc, char **argv, \fBt_data\fP *data)"
+.br
+.ti -1c
+.RI "int \fBfind_nearest\fP (\fBt_stack\fP *stack, size_t len, int *value_found, size_t *cost)"
+.br
+.RI "Find the nearest value and the cost to reach it\&. "
+.ti -1c
+.RI "int \fBfind_value\fP (\fBt_stack\fP *stack, size_t len, \fBt_bool\fP max_selected)"
+.br
+.RI "Find the value in the stack, the smallest (0) or the biggest (1) "
+.ti -1c
+.RI "long \fBft_atol\fP (const char *nptr)"
+.br
+.RI "Convert string to long, and handle number\&. "
+.ti -1c
+.RI "void \fBft_pa\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Push a : Takes the first element of b and put it on top of stack a\&. Do nothing if b doesn't exit\&. "
+.ti -1c
+.RI "void \fBft_pb\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Push b : Takes the first element of a and put it on top of stack b\&. Do nothing if b doesn't exit\&. "
+.ti -1c
+.RI "int \fBft_pushswap\fP (int argc, char **argv)"
+.br
+.RI "Main function /!\\ require arguments to work\&. "
+.ti -1c
+.RI "void \fBft_ra\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Rotate a : Shifts all the stack up and the first becomes last\&. "
+.ti -1c
+.RI "void \fBft_rb\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Rotate b : Shifts all the stack up and the first becomes last\&. "
+.ti -1c
+.RI "void \fBft_rr\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Rotate a and b : Executes Rotate a and Rotate b\&. "
+.ti -1c
+.RI "void \fBft_rra\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Reverse Rotate a : Shifts all the stack down and the last becomes first\&. "
+.ti -1c
+.RI "void \fBft_rrb\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Reverse Rotate b : Shifts all the stack down and the last becomes first\&. "
+.ti -1c
+.RI "void \fBft_rrr\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Reverse Rotate a and b : Executes Reverse Rotate a and Reverse Rotate b\&. "
+.ti -1c
+.RI "void \fBft_sa\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Swap a : Swaps the first and second element in a Do nothing if first or second doesn't exist\&. "
+.ti -1c
+.RI "void \fBft_sb\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Swap b : Swaps the first and second element in b Do nothing if first or second doesn't exist\&. "
+.ti -1c
+.RI "int \fBft_sort\fP (\fBt_data\fP *data)"
+.br
+.RI "Function used to call other sort algorithms\&. "
+.ti -1c
+.RI "void \fBft_sort_four\fP (\fBt_data\fP *data)"
+.br
+.RI "Sort algorithm for 4 numbers\&. "
+.ti -1c
+.RI "void \fBft_sort_hardcoded\fP (\fBt_data\fP *data)"
+.br
+.RI "Executes hard coded functions to sort stack with custom lengths\&. "
+.ti -1c
+.RI "void \fBft_sort_small\fP (\fBt_data\fP *data)"
+.br
+.ti -1c
+.RI "void \fBft_sort_three\fP (\fBt_data\fP *data)"
+.br
+.RI "Sort algorithm for 3 numbers\&. "
+.ti -1c
+.RI "void \fBft_ss\fP (\fBt_data\fP *data, \fBt_bool\fP print_name)"
+.br
+.RI "Swap S : Executes Swap A and B\&. "
+.ti -1c
+.RI "void \fBft_stackadd_back\fP (\fBt_stack\fP **stack, \fBt_stack\fP *new, size_t stack_len)"
+.br
+.RI "Adds the 'new' element at the end of stack\&. "
+.ti -1c
+.RI "void \fBft_stackadd_front\fP (\fBt_stack\fP **lst, \fBt_stack\fP *new)"
+.br
+.RI "Adds the 'new' element at the start of stack\&. "
+.ti -1c
+.RI "int \fBft_stackclear\fP (\fBt_data\fP *data)"
+.br
+.RI "Remove all elements from stack a and b\&. "
+.ti -1c
+.RI "\fBt_stack\fP * \fBft_stacklast\fP (\fBt_stack\fP *stack, size_t stack_len)"
+.br
+.ti -1c
+.RI "\fBt_stack\fP * \fBft_stacknew\fP (int content)"
+.br
+.RI "Allocates and returns the newly created element 'value' is initialised with content 'next' is set to NULL\&. "
+.ti -1c
+.RI "int \fBinit_data\fP (\fBt_data\fP *data)"
+.br
+.RI "Initialize Data to avoid using calloc\&. "
+.ti -1c
+.RI "int \fBis_sorted\fP (\fBt_data\fP *data)"
+.br
+.RI "Verify if there is something in stack b, and if stack a is sorted\&. "
+.ti -1c
+.RI "void \fBprint_index\fP (\fBt_stack\fP *stack, size_t len, int fd)"
+.br
+.RI "Print the stack\&. "
+.ti -1c
+.RI "void \fBprint_stack\fP (\fBt_stack\fP *stack, size_t len, int fd)"
+.br
+.RI "Print the stack\&. "
+.ti -1c
+.RI "void \fBprint_stacks\fP (\fBt_data\fP *data, int fd)"
+.br
+.RI "Print the stacks\&. "
+.ti -1c
+.RI "void \fBrotate_accordingly\fP (\fBt_data\fP *data, int value_found, size_t cost)"
+.br
+.ti -1c
+.RI "void \fBsort_insertion\fP (\fBt_data\fP *data)"
+.br
+.ti -1c
+.RI "void \fBsort_radix\fP (\fBt_data\fP *data)"
+.br
+.ti -1c
+.RI "int \fBverify_arguments\fP (int argc, char **argv)"
+.br
+.RI "Verify is there are unauthorized characters in arguments\&. "
+.ti -1c
+.RI "int \fBverify_duplicates\fP (int value, \fBt_stack\fP *data, size_t stack_len)"
+.br
+.RI "Check in the stack if a value is already in\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Header file for the pushswap project\&. 
+
+
+.PP
+Definition in file \fBft_pushswap\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define DEBUG   0"
+
+.PP
+Definition at line \fB23\fP of file \fBft_pushswap\&.h\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Push_swap from the source code\&.

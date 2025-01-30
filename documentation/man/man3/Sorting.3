@@ -1,0 +1,235 @@
+.TH "Sorting" 3 "Thu Jan 30 2025 17:36:41" "Push_swap" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Sorting \- Sorting functions
+.PP
+ \- All the sorting functions used\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBbuild_index\fP (\fBt_data\fP *data)"
+.br
+.ti -1c
+.RI "size_t \fBcost_calculator\fP (\fBt_stack\fP *stack, size_t len, int value)"
+.br
+.RI "Calculate the cost to reach a value\&. "
+.ti -1c
+.RI "int \fBfind_nearest\fP (\fBt_stack\fP *stack, size_t len, int *value_found, size_t *cost)"
+.br
+.RI "Find the nearest value and the cost to reach it\&. "
+.ti -1c
+.RI "int \fBfind_value\fP (\fBt_stack\fP *stack, size_t len, \fBt_bool\fP max_selected)"
+.br
+.RI "Find the value in the stack, the smallest (0) or the biggest (1) "
+.ti -1c
+.RI "int \fBft_sort\fP (\fBt_data\fP *data)"
+.br
+.RI "Function used to call other sort algorithms\&. "
+.ti -1c
+.RI "void \fBft_sort_four\fP (\fBt_data\fP *data)"
+.br
+.RI "Sort algorithm for 4 numbers\&. "
+.ti -1c
+.RI "void \fBft_sort_hardcoded\fP (\fBt_data\fP *data)"
+.br
+.RI "Executes hard coded functions to sort stack with custom lengths\&. "
+.ti -1c
+.RI "void \fBft_sort_small\fP (\fBt_data\fP *data)"
+.br
+.ti -1c
+.RI "void \fBft_sort_three\fP (\fBt_data\fP *data)"
+.br
+.RI "Sort algorithm for 3 numbers\&. "
+.ti -1c
+.RI "int \fBis_sorted\fP (\fBt_data\fP *data)"
+.br
+.RI "Verify if there is something in stack b, and if stack a is sorted\&. "
+.ti -1c
+.RI "void \fBrotate_accordingly\fP (\fBt_data\fP *data, int value_found, size_t cost)"
+.br
+.ti -1c
+.RI "void \fBsort_insertion\fP (\fBt_data\fP *data)"
+.br
+.ti -1c
+.RI "void \fBsort_radix\fP (\fBt_data\fP *data)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+All the sorting functions used\&. 
+
+
+.SH "Function Documentation"
+.PP 
+.SS "void build_index (\fBt_data\fP * data)"
+
+.PP
+Definition at line \fB40\fP of file \fBft_index\&.c\fP\&.
+.SS "size_t cost_calculator (\fBt_stack\fP * stack, size_t len, int value)"
+
+.PP
+Calculate the cost to reach a value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstack\fP stack to search 
+.br
+\fIlen\fP length of the stack 
+.br
+\fIvalue\fP value to found 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+size_t number of steps to reach the value 
+.RE
+.PP
+
+.PP
+Definition at line \fB88\fP of file \fBft_cost\&.c\fP\&.
+.SS "int find_nearest (\fBt_stack\fP * stack, size_t len, int * value_found, size_t * cost)"
+
+.PP
+Find the nearest value and the cost to reach it\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstack\fP stack to search 
+.br
+\fIlen\fP length of the stack 
+.br
+\fIvalue_found\fP value found 
+.br
+\fIcost\fP cost to reach the value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 0 for smallest, 1 for biggest 
+.RE
+.PP
+
+.PP
+Definition at line \fB54\fP of file \fBft_cost\&.c\fP\&.
+.SS "int find_value (\fBt_stack\fP * stack, size_t len, \fBt_bool\fP max_selected)"
+
+.PP
+Find the value in the stack, the smallest (0) or the biggest (1) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstack\fP stack to search 
+.br
+\fIlen\fP length of the stack 
+.br
+\fImax_selected\fP 0 for smallest, 1 for biggest 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int value found 
+.RE
+.PP
+
+.PP
+Definition at line \fB24\fP of file \fBft_cost\&.c\fP\&.
+.SS "int ft_sort (\fBt_data\fP * data)"
+
+.PP
+Function used to call other sort algorithms\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 0, OK, -1 error 
+.RE
+.PP
+
+.PP
+Definition at line \fB21\fP of file \fBft_sort\&.c\fP\&.
+.SS "void ft_sort_four (\fBt_data\fP * data)"
+
+.PP
+Sort algorithm for 4 numbers\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.RE
+.PP
+
+.PP
+Definition at line \fB74\fP of file \fBft_sort_hardcoded\&.c\fP\&.
+.SS "void ft_sort_hardcoded (\fBt_data\fP * data)"
+
+.PP
+Executes hard coded functions to sort stack with custom lengths\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.RE
+.PP
+
+.PP
+Definition at line \fB22\fP of file \fBft_sort_hardcoded\&.c\fP\&.
+.SS "void ft_sort_small (\fBt_data\fP * data)"
+
+.PP
+Definition at line \fB60\fP of file \fBft_sort\&.c\fP\&.
+.SS "void ft_sort_three (\fBt_data\fP * data)"
+
+.PP
+Sort algorithm for 3 numbers\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.RE
+.PP
+
+.PP
+Definition at line \fB41\fP of file \fBft_sort_hardcoded\&.c\fP\&.
+.SS "int is_sorted (\fBt_data\fP * data)"
+
+.PP
+Verify if there is something in stack b, and if stack a is sorted\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 0, OK, -1 error 
+.RE
+.PP
+
+.PP
+Definition at line \fB41\fP of file \fBft_sort\&.c\fP\&.
+.SS "void rotate_accordingly (\fBt_data\fP * data, int value_found, size_t cost)"
+
+.PP
+Definition at line \fB103\fP of file \fBft_cost\&.c\fP\&.
+.SS "void sort_insertion (\fBt_data\fP * data)"
+
+.PP
+Definition at line \fB15\fP of file \fBft_sort_insertion\&.c\fP\&.
+.SS "void sort_radix (\fBt_data\fP * data)"
+
+.PP
+Definition at line \fB17\fP of file \fBft_sort_radix\&.c\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Push_swap from the source code\&.

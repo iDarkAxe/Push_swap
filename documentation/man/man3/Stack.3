@@ -1,0 +1,206 @@
+.TH "Stack" 3 "Thu Jan 30 2025 17:36:41" "Push_swap" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Stack \- Stack functions
+.PP
+ \- All the functions used to create a stack, and verify it's validity\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBfill_stack\fP (int argc, char **argv, \fBt_data\fP *data)"
+.br
+.RI "Parse the given args, creates nodes and links them to make a stack Uses _single_string for each argument so that it can handle multiple args "151 1 2 3 4 5" 6 7 8 "9 10" 95 are valid arguments (args + strings)\&. "
+.ti -1c
+.RI "long \fBft_atol\fP (const char *nptr)"
+.br
+.RI "Convert string to long, and handle number\&. "
+.ti -1c
+.RI "void \fBft_stackadd_back\fP (\fBt_stack\fP **stack, \fBt_stack\fP *new, size_t stack_len)"
+.br
+.RI "Adds the 'new' element at the end of stack\&. "
+.ti -1c
+.RI "void \fBft_stackadd_front\fP (\fBt_stack\fP **lst, \fBt_stack\fP *new)"
+.br
+.RI "Adds the 'new' element at the start of stack\&. "
+.ti -1c
+.RI "int \fBft_stackclear\fP (\fBt_data\fP *data)"
+.br
+.RI "Remove all elements from stack a and b\&. "
+.ti -1c
+.RI "\fBt_stack\fP * \fBft_stacklast\fP (\fBt_stack\fP *stack, size_t stack_len)"
+.br
+.ti -1c
+.RI "\fBt_stack\fP * \fBft_stacknew\fP (int content)"
+.br
+.RI "Allocates and returns the newly created element 'value' is initialised with content 'next' is set to NULL\&. "
+.ti -1c
+.RI "int \fBverify_arguments\fP (int argc, char **argv)"
+.br
+.RI "Verify is there are unauthorized characters in arguments\&. "
+.ti -1c
+.RI "int \fBverify_duplicates\fP (int value, \fBt_stack\fP *data, size_t stack_len)"
+.br
+.RI "Check in the stack if a value is already in\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+All the functions used to create a stack, and verify it's validity\&. 
+
+
+.SH "Function Documentation"
+.PP 
+.SS "int fill_stack (int argc, char ** argv, \fBt_data\fP * data)"
+
+.PP
+Parse the given args, creates nodes and links them to make a stack Uses _single_string for each argument so that it can handle multiple args "151 1 2 3 4 5" 6 7 8 "9 10" 95 are valid arguments (args + strings)\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIargc\fP number of args 
+.br
+\fIargv\fP array of strings 
+.br
+\fIdata\fP structure that handles the stacks 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 0 if OK, !0 is error 
+.RE
+.PP
+
+.PP
+Definition at line \fB98\fP of file \fBft_filler_ps\&.c\fP\&.
+.SS "long ft_atol (const char * nptr)"
+
+.PP
+Convert string to long, and handle number\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInptr\fP pointer to the start of the string 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+long value that was calculated 
+.RE
+.PP
+
+.PP
+Definition at line \fB45\fP of file \fBft_verify\&.c\fP\&.
+.SS "void ft_stackadd_back (\fBt_stack\fP ** stack, \fBt_stack\fP * new, size_t stack_len)"
+
+.PP
+Adds the 'new' element at the end of stack\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstack\fP head of stack 
+.br
+\fInew\fP element to add 
+.RE
+.PP
+
+.PP
+Definition at line \fB72\fP of file \fBft_stack\&.c\fP\&.
+.SS "void ft_stackadd_front (\fBt_stack\fP ** stack, \fBt_stack\fP * new)"
+
+.PP
+Adds the 'new' element at the start of stack\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstack\fP head of stack 
+.br
+\fInew\fP element to add 
+.RE
+.PP
+
+.PP
+Definition at line \fB47\fP of file \fBft_stack\&.c\fP\&.
+.SS "int ft_stackclear (\fBt_data\fP * data)"
+
+.PP
+Remove all elements from stack a and b\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 0 OK, -1 is error 
+.RE
+.PP
+
+.PP
+Definition at line \fB106\fP of file \fBft_stack\&.c\fP\&.
+.SS "\fBt_stack\fP * ft_stacknew (int content)"
+
+.PP
+Allocates and returns the newly created element 'value' is initialised with content 'next' is set to NULL\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcontent\fP value to add when creating the element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+tstack* pointer to the element 
+.RE
+.PP
+
+.PP
+Definition at line \fB26\fP of file \fBft_stack\&.c\fP\&.
+.SS "int verify_arguments (int argc, char ** argv)"
+
+.PP
+Verify is there are unauthorized characters in arguments\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIargc\fP number of args 
+.br
+\fIargv\fP array of strings 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 0 if OK, -1 is error 
+.RE
+.PP
+
+.PP
+Definition at line \fB113\fP of file \fBft_verify\&.c\fP\&.
+.SS "int verify_duplicates (int value, \fBt_stack\fP * stack, size_t stack_len)"
+
+.PP
+Check in the stack if a value is already in\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP value to find 
+.br
+\fIstack\fP stack where to search 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 0, OK not found, -1 error 
+.RE
+.PP
+
+.PP
+Definition at line \fB22\fP of file \fBft_verify\&.c\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Push_swap from the source code\&.

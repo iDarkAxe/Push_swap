@@ -1,0 +1,87 @@
+.TH "Optional" 3 "Thu Jan 30 2025 17:36:41" "Push_swap" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Optional \- Optional functions for debugging
+.PP
+ \- Optional functions used to understand what is happening when something goes wrong\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBfill_stacks\fP (int argc, char **argv, \fBt_data\fP *data)"
+.br
+.ti -1c
+.RI "void \fBprint_index\fP (\fBt_stack\fP *stack, size_t len, int fd)"
+.br
+.RI "Print the stack\&. "
+.ti -1c
+.RI "void \fBprint_stack\fP (\fBt_stack\fP *stack, size_t len, int fd)"
+.br
+.RI "Print the stack\&. "
+.ti -1c
+.RI "void \fBprint_stacks\fP (\fBt_data\fP *data, int fd)"
+.br
+.RI "Print the stacks\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Optional functions used to understand what is happening when something goes wrong\&. 
+
+
+.SH "Function Documentation"
+.PP 
+.SS "void print_index (\fBt_stack\fP * stack, size_t len, int fd)"
+
+.PP
+Print the stack\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstack\fP stack to print 
+.br
+\fIlen\fP number of elements to print 
+.br
+\fIfd\fP file descriptor 
+.RE
+.PP
+
+.PP
+Definition at line \fB115\fP of file \fBft_print_stacks\&.c\fP\&.
+.SS "void print_stack (\fBt_stack\fP * stack, size_t len, int fd)"
+
+.PP
+Print the stack\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstack\fP stack to print 
+.br
+\fIlen\fP number of elements to print 
+.RE
+.PP
+
+.PP
+Definition at line \fB26\fP of file \fBft_print_stacks\&.c\fP\&.
+.SS "void print_stacks (\fBt_data\fP * data, int fd)"
+
+.PP
+Print the stacks\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP structure that handles the stacks 
+.br
+\fIfd\fP file descriptor 
+.RE
+.PP
+
+.PP
+Definition at line \fB53\fP of file \fBft_print_stacks\&.c\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Push_swap from the source code\&.
