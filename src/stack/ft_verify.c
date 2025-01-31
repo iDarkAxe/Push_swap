@@ -6,11 +6,41 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:03:00 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/28 14:48:55 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/31 09:27:15 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
+
+static t_bool	verify_after_digit(char current, char next);
+
+/**
+ * @brief Verify is there are unauthorized characters in arguments
+ *
+ * @param argc number of args
+ * @param argv array of strings
+ * @return int 0 if OK, -1 is error
+ */
+int	verify_arguments(int argc, char **argv)
+{
+	size_t	index;
+	int		arg_index;
+
+	arg_index = 1;
+	while (arg_index < argc)
+	{
+		index = 0;
+		while (argv[arg_index][index] != '\0')
+		{
+			if (verify_after_digit(argv[arg_index][index], argv[arg_index][index
+				+ 1]) == 0)
+				return (-1);
+			index++;
+		}
+		arg_index++;
+	}
+	return (0);
+}
 
 /**
  * @brief Check in the stack if a value is already in
@@ -99,34 +129,6 @@ static t_bool	verify_after_digit(char current, char next)
 		if (next >= '0' && next <= '9')
 			return (1);
 		return (0);
-	}
-	return (0);
-}
-
-/**
- * @brief Verify is there are unauthorized characters in arguments
- *
- * @param argc number of args
- * @param argv array of strings
- * @return int 0 if OK, -1 is error
- */
-int	verify_arguments(int argc, char **argv)
-{
-	size_t	index;
-	int		arg_index;
-
-	arg_index = 1;
-	while (arg_index < argc)
-	{
-		index = 0;
-		while (argv[arg_index][index] != '\0')
-		{
-			if (verify_after_digit(argv[arg_index][index], argv[arg_index][index
-				+ 1]) == 0)
-				return (-1);
-			index++;
-		}
-		arg_index++;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ppontet <ppontet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 00:13:47 by ppontet           #+#    #+#             */
-/*   Updated: 2025/01/02 22:49:03 by ppontet          ###   ########lyon.fr   */
+/*   Updated: 2025/01/31 09:19:51 by ppontet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,18 @@
  */
 int	main(int argc, char **argv)
 {
-	t_data	*data;
+	t_data	data;
 
 	if (argc == 1)
 		return (-1);
-	data = malloc(sizeof(t_data));
-	if (init_data(data) != 0)
-		return (errors_handler(-4, data));
-	if (fill_stack(argc, argv, data) != 0)
-		return (errors_handler(-5, data));
-	parse_and_execute(data);
-	if (is_sorted(data) != 0)
-		return (errors_handler(-6, data));
+	if (init_data(&data) != 0)
+		return (errors_handler(-4, &data));
+	if (fill_stack(argc, argv, &data) != 0)
+		return (errors_handler(-5, &data));
+	parse_and_execute(&data);
+	if (is_sorted(&data) != 0)
+		return (errors_handler(-6, &data));
 	write(1, "OK\n", 3);
-	ft_stackclear(data);
+	ft_stackclear(&data);
 	return (0);
 }
