@@ -57,3 +57,65 @@ make checker
 ```
 
 0 leak, 0 bug found at this moment.
+
+---
+
+# Push_swap #
+
+Push_Swap est un algorithme de tri qui utilises des piles, et qui les tries.
+Il y a un set d'instructions définies, et qui doivent être utilisées lors du tri.
+L'algorithme de tri fonctionne plutôt bien pour les groupes de + de 500 nombres. Vous pouvez essayer sur [Complexity, a Push_Swap tester](https://github.com/SimonCROS/push_swap_tester) pour des tests en profondeur.
+
+Pour les listes de nombres de moins de 10 éléments, on utilise un simple algorithme qui recherche les nombres les plus petits et les rangent dans la seconde pile jusqu'à ce qu'il n'en reste que 4. Ensuite il range les 4 derniers et récupère dans l'ordre les nombres de la seconde pile. TADAA ça marche !
+
+Pour les listes plus longues, on utilise un algorithme Radix amélioré pour fonctionner avec des négatifs. Le Radix n'est pas le plus rapide, ni le plus beau mais il est diablement pratique pour des tâches répétitives où prédire le nombre d'instruction est nécessaire. C'est idéal car le temps d'exécution est constant pour un nombre fixe d'éléments dans la liste.
+
+## Utilisation ##
+La liste de nombres peut contenir des nombres positifs et négatifs, jusqu'à la valeur maximale et minimale d'un entier de votre machine (testé avec une intervalle de -2147483648 à 2147483647).
+L'entrée doit respecter toutes les règles car tout type d'erreur devrait être rejeté par le programme.
+
+"12 54 6 879 -9812 03123 -23545" est valide.
+
+"4189 897- 15-46 notAnumber 47889" est invalide.
+
+Il ne devrait pas y avoir de lettres, ni de caractères spéciaux ou n'importe lequel autre caractère qui n'est pas un nombre ni le symbole + et -.
+
+### Push_Swap ###
+Vous pouvez utiliser une variable ou écrire directement la première pile.
+Si vous voulez sauvegarder le résultat, vous pouvez utiliser :
+```sh
+./push_swap $ARG
+```
+``$ARG`` peut être une chaîne de caractères ou un assortiement de chaînes.
+```sh
+ARG="1 2 4 3"
+```
+ou
+```sh
+ARG=""1" "2" "4" "3""
+```
+### Checker ###
+Le checker est utilisé pour déterminer si le résultat de Push_swap est bon ou mauvais.
+Comme le checker utilises les mêmes fonctions que Push_Swap, il est quasiment impossible de trouver une faille dans l'un des programmes qui ne soit dans l'autre.
+Notes : ce checker est plus performant que celui donné dans l'exercise !
+Checker a besoin de la même variable $ARG que Push_Swap car il attends la liste des instructions sur l'entrée standard.
+```sh
+./checker $ARG < PUSH_SWAP_RESULT
+```
+Vous pouvez aussi utiliser un pipe (tuyau de redirection) :
+```sh
+./push_swap $ARG | ./checker $ARG
+```
+## Compilation ##
+
+Compilation testée sur WSL2 Kali-Linux sur Windows 10 et sur Ubuntu (on a intel Mac) mais il devrait fonctionner partout.
+Utilisez ``make`` pour compiler Push_Swap
+```sh
+make
+```
+Utilisez ``make checker`` pour compiler le checker
+```sh
+make checker
+```
+
+0 leak et 0 bug trouvé à ce jour.
